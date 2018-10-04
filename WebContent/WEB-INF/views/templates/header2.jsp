@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<c:url value="../assets/vendor" var="vendor" />
-<c:url value="../assets/js" var="js" />
 <c:url value="../../assets/imagens" var="img" />
 
-<body class="animsition">
+<c:url value="/sair" var="urlSair"/>
+
+<body>
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -151,8 +151,8 @@
                                             </div>
 
                                             <div class="account-dropdown__footer">
-                                                <a href="login2.html">
-                                                    <i class="zmdi zmdi-power"></i>Sair</a>
+                                                <a href="${urlSair}">
+                                                <i class="zmdi zmdi-power"></i>Sair</a>
                                             </div>
                                         </div>
                                     </div>

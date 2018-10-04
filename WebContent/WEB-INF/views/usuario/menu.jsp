@@ -8,10 +8,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="../templates/head.jsp"/>
+<c:import url="../templates/head2.jsp"/>
 </head>
 <body>
-	
+<c:import url="../templates/header2.jsp"/>
 	<h1>Usuarios</h1>
 			
 	<c:forEach items="${usuarios}" var="usuario">	

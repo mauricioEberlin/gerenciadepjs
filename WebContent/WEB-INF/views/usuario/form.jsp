@@ -11,9 +11,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="../templates/head2.jsp"/>
+<c:import url="../templates/head3.jsp"/>
+<title>Cadastro de Usuário</title>
 </head>
-<c:import url="../templates/header2.jsp"/>
+<c:import url="../templates/header3.jsp"/>
             
              <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -27,9 +28,9 @@
                                         <h2 class="title-1" style="font-size: 20px; color: #fff;">Cadastro de Usuários</h2>
                                     </div>
                                     <div class="card-body card-block">
-                                        <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
 
                                   <form:form modelAttribute="usuario" action="${urlSalvar}" method="post">
+                                  	<form:hidden path="id" />
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label class=" form-control-label">Nome</label>
@@ -81,20 +82,24 @@
                                                     <label for="select" class=" form-control-label">Permissão</label>
                                                 </div>
                                                  <div class="col-12 col-md-9">
-                                                 <select name="select" id="select" class="form-control">
-                                                        <label>
+                                                 <select name="select" id="select" class="form-control">                                               
+                                                 <option value="1">Coordenador</option>
+                                                 <option value="2">Administrador</option>
+                                                        
+                                                       <!-- <label>
 			                                            Administrador
 			                                           <input type="checkbox" name="isAdministrador" 
 			                                           ${usuario.permissao eq 'ADMINISTRADOR' ? 'checked'  : ''}
 			                                           id="inputAdministrador">
-		                                           </label>
+		                                           </label> --> 
+                                                    
                                                     </select> 
                                                       
                                                     <small class="form-text text-muted">Por favor escolha a permissão
                                                         do usuario</small>
                                                 </div>
                                             </div>
-                                        </form>
+                                        
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
@@ -104,18 +109,14 @@
                                             <i class="fa fa-ban"></i> Limpar
                                         </button>
                                     </div>
-                                </div>
-                                
+                                </div>                              
                                 </form:form>
                                 <div class="copyright">
                                     <p>.</p>
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
-
                 </div>
             </div>
         </div>
