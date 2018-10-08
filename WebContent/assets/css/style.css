@@ -1,4 +1,6 @@
-
+.modal fade{
+	setTimeout(function() { $('modal fade').modal('hide'); }, 50000);
+}
 /* Tela de Tecnologias */
 .table-earning thead th {
   background-color: #005fa3;
