@@ -27,12 +27,12 @@
                                     <div class="card-header card-header-tecnologias">
                                         <h2 class="title-1" style="font-size: 20px; color: #fff;">Cadastro de Projetos</h2>
 
-                                    </div>
-                                    
+                                    </div>                                    
                                <form:form modelAttribute="projeto" action="${urlSalvar}" method="post">
-                               	 <form:hidden path="id" />
                                     <div class="card-body card-block">
-
+										<form:hidden path="usuarioCriador" value="${usuarioAutenticado.id}"/>
+										<form:hidden path="status"/>
+										
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label class=" form-control-label">ID</label>
@@ -96,8 +96,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="responsavelCliente" type="text" id="text-input" name="text-input" class="form-control"/>
-                                                    <small class="form-text text-muted">Por favor insira o Responsável
-                                                        Cliente</small>
+                                                    <small class="form-text text-muted">Por favor insira o Responsável Cliente</small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -118,8 +117,8 @@
                                                     <label for="textarea-input" class=" form-control-label">Descrição</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <textarea name="textarea-input" id="textarea-input" rows="6"
-                                                         class="form-control"></textarea>
+                                                    <form:textarea path="descricao" id="textarea-input" rows="6"
+                                                         class="form-control"/>
                                                     <small>Descreva o seu projeto</small>
                                                 </div>
                                             </div>

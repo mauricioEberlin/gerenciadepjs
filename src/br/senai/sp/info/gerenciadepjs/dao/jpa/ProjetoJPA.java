@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.senai.sp.info.gerenciadepjs.dao.ProjetoDAO;
 import br.senai.sp.info.gerenciadepjs.model.Projeto;
+import br.senai.sp.info.gerenciadepjs.model.Status;
 import br.senai.sp.info.gerenciadepjs.model.Tecnologia;
 
 @Repository
@@ -83,5 +84,24 @@ public class ProjetoJPA implements ProjetoDAO {
 				
 		return query.list();
 		
+	}
+
+	@Override
+	public List<Projeto> buscarPorStatus(Status status) {
+		
+			String hql = "FROM Projeto p ";
+			switch (status) {
+			case INICIADO:
+				hql += "WHERE p.status = 0"; 
+				break;
+			case EM_ANDAMENTO:
+				hql += "WHERE p.status = 1";
+				break;
+			case FINALIZADO:
+				hql += "WHERE p.status = 2";
+				break;			
+			}		
+			Query query = sessionFac.getCurrentSession().createQuery(hql);
+			return query.list();
 	}
 }

@@ -3,6 +3,7 @@ package br.senai.sp.info.gerenciadepjs.dao;
 import java.util.List;
 
 import br.senai.sp.info.gerenciadepjs.model.Projeto;
+import br.senai.sp.info.gerenciadepjs.model.Status;
 import br.senai.sp.info.gerenciadepjs.model.Tecnologia;
 
 public interface ProjetoDAO {
@@ -20,5 +21,7 @@ public interface ProjetoDAO {
 	public Projeto buscarPorNome(String nome);
 
 	public List<Projeto> buscarPorTecnologia(Long id);
+	
+	public List<Projeto> buscarPorStatus(Status status);
 	
 }

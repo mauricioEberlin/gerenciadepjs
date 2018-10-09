@@ -1,5 +1,8 @@
 package br.senai.sp.info.gerenciadepjs.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -10,13 +13,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.senai.sp.info.gerenciadepjs.dao.ProjetoDAO;
 import br.senai.sp.info.gerenciadepjs.dao.TecnologiaDAO;
+import br.senai.sp.info.gerenciadepjs.dao.UsuarioDAO;
 import br.senai.sp.info.gerenciadepjs.model.Projeto;
+import br.senai.sp.info.gerenciadepjs.model.Status;
 import br.senai.sp.info.gerenciadepjs.model.Tecnologia;
+import br.senai.sp.info.gerenciadepjs.model.Usuario;
+import sun.util.BuddhistCalendar;
 
 @Controller
 @RequestMapping("/app")
@@ -28,17 +36,26 @@ public class ProjetoController {
 	@Autowired
 	private TecnologiaDAO daoTec;
 	
+	@Autowired
+	private UsuarioDAO daoUsr;
+	
 	@GetMapping("/projeto")
-	public String AbrirTelaProjetos (@RequestParam(required = false)Long id, Model model) {
+	public String AbrirTelaProjetos (@RequestParam(name = "idStatus", required = false)Long id, Long idStatus,Model model) {
 		
-		if(id == null) {
+		if(id == null && idStatus == null) {
 			model.addAttribute("projetos", dao.buscarTodos());	
+		}else if(idStatus == 0){
+			model.addAttribute("projetos", dao.buscarPorStatus(Status.INICIADO));		
+		}else if(idStatus == 1) {
+			model.addAttribute("projetos", dao.buscarPorStatus(Status.EM_ANDAMENTO));			
+		}else if (idStatus == 2) {
+			model.addAttribute("projetos", dao.buscarPorStatus(Status.FINALIZADO));
+			
 		}else {
 			model.addAttribute("projetos", dao.buscarPorTecnologia(id));		
 		}	
 		return "projeto/menu";
 	}
-	
 	@GetMapping("/projeto/novo")
 	public String AbrirTelaNovoProjeto(Model model) {
 		
@@ -67,22 +84,32 @@ public class ProjetoController {
 	}
 	
 	@PostMapping("/projeto/salvar")
-	public String salvar(@Valid Projeto projeto, BindingResult brprojeto, Model model) {
-		
+	public String salvar(@Valid Projeto projeto, Long usuarioCriador, Long tecnologia, BindingResult brprojeto, Model model) {
+	
 		if (dao.buscarPorNome(projeto.getNome()) != null) {
+			System.out.println("Projeto com nome igual");
 			brprojeto.addError(new FieldError("projeto", "nome", "O nome já existe"));
 		}
 		
 		if (brprojeto.hasErrors()) {
+			System.out.println("DEU ERRO");
+			System.out.println(brprojeto.getAllErrors());
 			return "projeto/novo";
 		}
 		
+		projeto.setUsuarioCriador(daoUsr.buscar(usuarioCriador));
+		
+		// buscar a tecnologia por id e colocar no projeto
+		projeto.setTecnologia(daoTec.buscar(tecnologia));
+		
 		if (projeto.getId() == null) {
+			System.out.println("dao.persistir(projeto)");
 			dao.persistir(projeto);
 		}else {
 			Projeto projetoBanco = dao.buscar(projeto.getId());
 			BeanUtils.copyProperties(projeto, projetoBanco, "id");
 			dao.alterar(projetoBanco);
+			System.out.println("dao.alterar(projetoBanco);");
 		}
 		
 		return "redirect:/app/projeto";

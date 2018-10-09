@@ -30,13 +30,13 @@
                                 Projetos</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
-                                    <a href="/gerenciadepjs/app/projeto">Iniciados</a>
+                                    <a href="/gerenciadepjs/app/projeto?idStatus=0">Iniciados</a>
                                 </li>
                                 <li>
-                                    <a href="/gerenciadepjs/app/projeto">Em andamento</a>
+                                    <a href="/gerenciadepjs/app/projeto?idStatus=1">Em andamento</a>
                                 </li>
                                 <li>
-                                    <a href="/gerenciadepjs/app/projeto">Finalizados</a>
+                                    <a href="/gerenciadepjs/app/projeto?idStatus=2">Finalizados</a>
                                 </li>
 
                             </ul>
@@ -79,13 +79,13 @@
                                 Projetos</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="/gerenciadepjs/app/projeto">Iniciados</a>
+                                    <a href="/gerenciadepjs/app/projeto?idStatus=0">Iniciados</a>
                                 </li>
                                 <li>
-                                    <a href="/gerenciadepjs/app/projeto">Em andamento</a>
+                                    <a href="/gerenciadepjs/app/projeto?idStatus=1">Em andamento</a>
                                 </li>
                                 <li>
-                                    <a href="/gerenciadepjs/app/projeto">Finalizados</a>
+                                    <a href="/gerenciadepjs/app/projeto?idStatus=2">Finalizados</a>
                                 </li>
                             </ul>
                         </li>

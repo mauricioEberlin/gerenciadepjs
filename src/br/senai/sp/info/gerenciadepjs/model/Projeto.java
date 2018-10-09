@@ -12,7 +12,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table
@@ -47,9 +47,11 @@ public class Projeto {
 	@Column(nullable = true)
 	private Float horas;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(nullable = true)
 	private Date dataInicio;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(nullable = true)
 	private Date dataFim;
 	
@@ -60,7 +62,7 @@ public class Projeto {
 	
 	@NotNull
 	private Status status = Status.INICIADO;
-	
+
 	//G&S
 	
 	public Tecnologia getTecnologia() {
@@ -118,12 +120,12 @@ public class Projeto {
 	public void setHoras(Float horas) {
 		this.horas = horas;
 	}
-
+	
 	public Date getDataInicio() {
 		return dataInicio;
 	}
-
-	public void setDataInicio(Date dataInicio) {
+	
+	public void setDataInicio(Date dataInicio){
 		this.dataInicio = dataInicio;
 	}
 
@@ -131,7 +133,7 @@ public class Projeto {
 		return dataFim;
 	}
 
-	public void setDataFim(Date dataFim) {
+	public void setDataFim(Date dataFim){
 		this.dataFim = dataFim;
 	}
 
