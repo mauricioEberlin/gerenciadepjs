@@ -71,13 +71,13 @@ public class UsuarioController {
 	@PostMapping(value = {"/app/adm/usuario/salvar"})
 	public String salvar(@Valid Usuario usuario, BindingResult brUsuario,
 		                  @RequestParam(name = "isAdministrador", required = false)Boolean ehAdministrador) {
-		
+
 		if(usuario.getId() == null) {
 		
 			if (usuarioDAO.buscarPorEmail(usuario.getEmail()) != null) {
 				brUsuario.addError(new FieldError("usuario", "email", "O e-mail ja existe"));
 			}	
-			if (brUsuario.hasErrors()) {
+			if (brUsuario.hasErrors()) {				
 				return "usuario/form";
 			}
 		
@@ -98,7 +98,7 @@ public class UsuarioController {
 			usuario.hashearSenha();
 			usuarioDAO.persistir(usuario);
 			
-			String titulo = "Bem-Vindo a BQR";
+			/*String titulo = "Bem-Vindo a BQR";
 			String corpo = "Olá, " + usuario.getNome() + "! Seja bem-vindo a BRQ. ";
 					//+"Acesse o link: localhost:8080/jc/ para realizar o login.";
 			
@@ -106,7 +106,7 @@ public class UsuarioController {
 				EmailUtils.enviarEmail(titulo, corpo, usuario.getEmail());
 			}catch (MessagingException e) {
 				e.printStackTrace();
-			}
+			}*/
 		}else {
 			Usuario usuarioBanco = usuarioDAO.buscar(usuario.getId());
 			usuarioBanco.setNome(usuario.getNome());

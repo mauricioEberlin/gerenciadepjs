@@ -27,9 +27,9 @@
                                     <div class="card-header card-header-tecnologias">
                                         <h2 class="title-1" style="font-size: 20px; color: #fff;">Cadastro de Usuários</h2>
                                     </div>
-                                    <div class="card-body card-block">
-
-                                  <form:form modelAttribute="usuario" action="${urlSalvar}" method="post">
+                                    
+                                    <form:form modelAttribute="usuario" action="${urlSalvar}" method="post">
+                                    <div class="card-body card-block">                         
                                   	<form:hidden path="id" />
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
@@ -38,6 +38,15 @@
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="nome" type="text" id="text-input" name="text-input" class="form-control"/>
                                                     <small class="form-text text-muted">Por favor insira seu nome</small>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label class=" form-control-label">Sobrenome</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <form:input path="sobrenome" type="text" id="text-input" name="text-input" class="form-control"/>
+                                                    <small class="form-text text-muted">Por favor insira seu sobrenome</small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -82,9 +91,10 @@
                                                     <label for="select" class=" form-control-label">Permissão</label>
                                                 </div>
                                                  <div class="col-12 col-md-9">
-                                                 <select name="select" id="select" class="form-control">                                               
-                                                 <option value="1">Coordenador</option>
-                                                 <option value="2">Administrador</option>
+                                                 <form:select path="permissao" name ="isAdministrador" id="select" class="form-control">                                               
+                                                 <option value="false">Coordenador</option>
+                                                 <option value="true">Administrador</option>
+                                                 </form:select>
                                                         
                                                        <!-- <label>
 			                                            Administrador
@@ -92,8 +102,6 @@
 			                                           ${usuario.permissao eq 'ADMINISTRADOR' ? 'checked'  : ''}
 			                                           id="inputAdministrador">
 		                                           </label> --> 
-                                                    
-                                                    </select> 
                                                       
                                                     <small class="form-text text-muted">Por favor escolha a permissão
                                                         do usuario</small>

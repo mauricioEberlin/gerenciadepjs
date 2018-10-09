@@ -38,7 +38,7 @@
                                                     <label class=" form-control-label">ID</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <form:input path="id" type="text" id="text-input" name="text-input" class="form-control"/>
+                                                    <form:input path="id" type="number" id="number-input" name="text-input" class="form-control"/>
                                                     <small class="form-text text-muted">Insira o id do projeto</small>
                                                 </div>
                                             </div>

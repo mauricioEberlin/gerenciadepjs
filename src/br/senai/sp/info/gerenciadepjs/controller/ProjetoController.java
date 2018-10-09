@@ -87,20 +87,21 @@ public class ProjetoController {
 	public String salvar(@Valid Projeto projeto, Long usuarioCriador, Long tecnologia, BindingResult brprojeto, Model model) {
 	
 		if (dao.buscarPorNome(projeto.getNome()) != null) {
-			System.out.println("Projeto com nome igual");
 			brprojeto.addError(new FieldError("projeto", "nome", "O nome já existe"));
 		}
 		
 		if (brprojeto.hasErrors()) {
-			System.out.println("DEU ERRO");
 			System.out.println(brprojeto.getAllErrors());
 			return "projeto/novo";
 		}
 		
-		projeto.setUsuarioCriador(daoUsr.buscar(usuarioCriador));
+		System.out.println(projeto.getUsuarioCriador().getId());
+		System.out.println(projeto.getTecnologia().getId());
+		
+		//projeto.setUsuarioCriador(projeto.getUsuarioCriador());
 		
 		// buscar a tecnologia por id e colocar no projeto
-		projeto.setTecnologia(daoTec.buscar(tecnologia));
+		//projeto.setTecnologia(projeto.getTecnologia());
 		
 		if (projeto.getId() == null) {
 			System.out.println("dao.persistir(projeto)");
