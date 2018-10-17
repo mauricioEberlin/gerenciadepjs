@@ -17,9 +17,13 @@ import br.senai.sp.info.gerenciadepjs.dao.UsuarioDAO;
 import br.senai.sp.info.gerenciadepjs.model.Permissao;
 import br.senai.sp.info.gerenciadepjs.model.Usuario;
 import br.senai.sp.info.gerenciadepjs.utils.EmailUtils;
+import br.senai.sp.info.gerenciadepjs.utils.SessionUtils;
 
 @Controller
 public class UsuarioController {
+	
+	@Autowired
+	private SessionUtils sessionUtils;
 	
 	@Autowired
 	private UsuarioDAO usuarioDAO;
@@ -70,25 +74,19 @@ public class UsuarioController {
 	
 	@PostMapping(value = {"/app/adm/usuario/salvar"})
 	public String salvar(@Valid Usuario usuario, BindingResult brUsuario,
-		                  @RequestParam(name = "isAdministrador", required = false)Boolean ehAdministrador) {
-
-		if(usuario.getId() == null) {
+		                  @RequestParam(name = "permissao", required = false)Boolean ehAdministrador) {
 		
-			if (usuarioDAO.buscarPorEmail(usuario.getEmail()) != null) {
-				brUsuario.addError(new FieldError("usuario", "email", "O e-mail ja existe"));
-			}	
-			if (brUsuario.hasErrors()) {				
-				return "usuario/form";
-			}
-		
-		}else {
-			if (brUsuario.hasFieldErrors("nome") || brUsuario.hasFieldErrors("sobrenome")) {
-				return "usuario/form";
-			}
+		if (usuarioDAO.buscarPorEmail(usuario.getEmail()) != null) {
+			brUsuario.addError(new FieldError("usuario", "email", "O e-mail ja existe"));
+		}	
+		if (brUsuario.hasErrors()) {				
+			System.out.println(brUsuario.hasErrors());
+			return "usuario/form";
 		}
-		
+				
 		System.out.println("É administrador: " + ehAdministrador);
-		if (ehAdministrador != null) {
+		
+		if (ehAdministrador) {
 			usuario.setPermissao(Permissao.ADMINISTRADOR);
 		}else {
 			usuario.setPermissao(Permissao.COORDENADOR);
@@ -107,6 +105,7 @@ public class UsuarioController {
 			}catch (MessagingException e) {
 				e.printStackTrace();
 			}*/
+			
 		}else {
 			Usuario usuarioBanco = usuarioDAO.buscar(usuario.getId());
 			usuarioBanco.setNome(usuario.getNome());
@@ -121,6 +120,7 @@ public class UsuarioController {
 	
 	@GetMapping({"/sair"})
 	public String logout() {
+		sessionUtils.invalidarSessao();
 		return "redirect:/";
 	}	
 }

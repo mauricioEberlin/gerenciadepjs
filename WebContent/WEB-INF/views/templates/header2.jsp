@@ -117,7 +117,7 @@
                     <div class="container-fluid">
                         <div class="header-wrap">
                             <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="" />
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="" id="texto" list="historico"/>                                
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>

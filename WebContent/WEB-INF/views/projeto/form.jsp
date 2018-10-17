@@ -30,7 +30,7 @@
                                     </div>                                    
                                <form:form modelAttribute="projeto" action="${urlSalvar}" method="post">
                                     <div class="card-body card-block">
-										<form:hidden path="usuarioCriador" value="${usuarioAutenticado.id}"/>
+										<form:hidden path="usuarioCriador.id" value="${usuarioAutenticado.id}"/>
 										<form:hidden path="status"/>
 										
                                             <div class="row form-group">
@@ -104,7 +104,7 @@
                                                     <label for="select" class=" form-control-label">Tecnologias</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <form:select path="tecnologia" id="select" class="form-control">
+                                                    <form:select path="tecnologia.id" id="select" class="form-control">
                                                         <c:forEach items="${tecnologias}" var="tecnologia">
 					                                      <option value="${tecnologia.id}">${tecnologia.nome}</option> 
 				                                        </c:forEach> 

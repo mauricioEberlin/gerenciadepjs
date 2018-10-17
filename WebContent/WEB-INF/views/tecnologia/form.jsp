@@ -37,7 +37,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="nome" type="text" id="text-input" name="text-input" placeholder="Nome"
-                                                        class="form-control"/>
+                                                        class="form-control" htmlEscape="true"/>
 
                                                 </div>
                                             </div>

@@ -71,7 +71,6 @@
                                     </nav>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -131,6 +130,10 @@
 									<tr>
 										<td>Responsável cliente</td>
 										<td>${projeto.responsavelCliente}</td>
+									</tr>
+									<tr>
+										<td>Status</td>
+										<td>${projeto.status}</td>
 									</tr>								
 								</tbody>
 							</table>

@@ -87,43 +87,45 @@ public class ProjetoController {
 	
 	@PostMapping("/projeto/salvar")
 	public String salvar(@Valid Projeto projeto, BindingResult brprojeto, 
-			@RequestParam(name = "usuarioCriador")String idUsuario, 
-			@RequestParam(name = "tecnologia")String idTecnologia,
-			@RequestParam(name = "status")String idStatus,
+			@RequestParam(name = "usuarioCriador.id")Long idUsuario, 
+			@RequestParam(name = "tecnologia.id")Long idTecnologia,
+			@RequestParam(name = "status")Status status,
 			Model model) {
-	
-		if (dao.buscarPorNome(projeto.getNome()) != null) {
+		
+		System.out.println("AQUI: " + projeto.getStatus());
+		
+		if (dao.buscarPorNome(projeto.getNome()) != null && dao.buscar(projeto.getId()) == null) {
 			brprojeto.addError(new FieldError("projeto", "nome", "O nome já existe"));
 		}
 		
 		if (brprojeto.hasErrors()) {
+			System.out.print("ERROS CADASTRAR PROJETO: ");
 			System.out.println(brprojeto.getAllErrors());
 			return "projeto/novo";
 		}
 		
-		
-		
 		projeto.setUsuarioCriador(daoUsr.buscar(idUsuario));
 		projeto.setTecnologia(daoTec.buscar(idTecnologia));
+		projeto.setStatus(status);
 		
-		if(idStatus == "0") {
-			projeto.setStatus(Status.INICIADO);
-		}else if(idStatus == "1") {
-			projeto.setStatus(Status.EM_ANDAMENTO);	
-		}else if(idStatus == "2") {
-			projeto.setStatus(Status.FINALIZADO);	
-		}
-		
-		if (projeto.getId() == null) {
-			System.out.println("dao.persistir(projeto)");
+		/*switch(status) {
+			case "0": 
+				projeto.setStatus(Status.INICIADO);
+				break;
+			case "1": 
+				projeto.setStatus(Status.EM_ANDAMENTO);
+				break;
+			default: 
+				projeto.setStatus(Status.FINALIZADO);		
+		}*/
+				
+		if (dao.buscar(projeto.getId()) == null) {
 			dao.persistir(projeto);
 		}else {
 			Projeto projetoBanco = dao.buscar(projeto.getId());
 			BeanUtils.copyProperties(projeto, projetoBanco, "id");
 			dao.alterar(projetoBanco);
-			System.out.println("dao.alterar(projetoBanco);");
-		}
-		
+		}		
 		return "redirect:/app/projeto";
 	}
 	
