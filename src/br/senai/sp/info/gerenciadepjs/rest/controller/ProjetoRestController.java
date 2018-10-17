@@ -36,4 +36,13 @@ public class ProjetoRestController {
 			return ResponseEntity.status(500).build();
 		}
 	} 
+	
+	@GetMapping("/tec{idTecnologia}")
+	public ResponseEntity<Object> buscarPorTecnologia(@PathVariable Long idTecnologia){
+		try {
+			return ResponseEntity.ok(projetoService.buscarPorTecnologia(idTecnologia));
+		} catch (Exception e) {
+			return ResponseEntity.status(500).build();
+		}
+	} 
 }

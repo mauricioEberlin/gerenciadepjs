@@ -53,13 +53,11 @@ public class TecnologiaController {
 	@PostMapping("/tecnologia/salvar")
 	public String salvar(@Valid Tecnologia tecnologia, BindingResult br, Model model) {
 		
-		if(dao.buscarPorNome(tecnologia.getNome()) != null) {
-			System.out.println("Passou aqui");
+		if(dao.buscarPorNome(tecnologia.getNome()) != null && tecnologia.getId() == null) {
 			br.addError(new FieldError("tecnologia", "nome", "O nome já existe"));
 		}
 		
 		if(br.hasErrors()) {
-			System.out.println(br.hasErrors());
 			model.addAttribute("tecnologia", tecnologia);
 			return "tecnologia/form";		
 		}

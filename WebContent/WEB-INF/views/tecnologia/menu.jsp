@@ -44,7 +44,7 @@
                                            <c:forEach items="${tecnologias}" var="tecnologia">
                                             <tr>
                                                 <td>${tecnologia.nome}</td>
-                                                <td><a href="${urlListar}?id=${tecnologia.id}">Ver projetos</a></td>
+                                                <td><a href="${urlListar}?idTec=${tecnologia.id}">Ver projetos</a></td>
                                                 <td></td>
                                                 <td class="text-right"></td>
                                                 <td class="text-right"></td>

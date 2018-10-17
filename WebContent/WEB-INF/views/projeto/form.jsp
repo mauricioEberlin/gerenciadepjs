@@ -104,7 +104,7 @@
                                                     <label for="select" class=" form-control-label">Tecnologias</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <form:select path="tecnologia" name="select" id="select" class="form-control">
+                                                    <form:select path="tecnologia" id="select" class="form-control">
                                                         <c:forEach items="${tecnologias}" var="tecnologia">
 					                                      <option value="${tecnologia.id}">${tecnologia.nome}</option> 
 				                                        </c:forEach> 
@@ -112,6 +112,21 @@
                                                     <small class="form-text text-muted">Por favor escolha a tecnologia</small>
                                                 </div>
                                             </div>
+                                            
+                                           <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="select" class=" form-control-label">Status</label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <form:select path="status" name="select" id="select" class="form-control">                                                       
+					                                      <option value="0">Iniciado</option>
+					                                      <option value="1">Em andamento</option>
+					                                      <option value="2">Finalizado</option> 
+                                                    </form:select>
+                                                    <small class="form-text text-muted">Por favor insira o status</small>
+                                                </div>
+                                            </div>
+                                            
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="textarea-input" class=" form-control-label">Descrição</label>

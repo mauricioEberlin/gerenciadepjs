@@ -1,6 +1,5 @@
 package br.senai.sp.info.gerenciadepjs.controller;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -38,6 +37,7 @@ public class UsuarioController {
 		Usuario usuarioBuscado = usuarioDAO.buscarPorEmailESenha(usuario.getEmail(), usuario.getSenha());
 		if(usuarioBuscado == null) {
 			br.addError(new FieldError("usuario", "email", "E-mail ou senha incorretos"));
+			return "redirect:/";
 		}
 		
 		if(br.hasFieldErrors("email") || br.hasFieldErrors("senha")) {
