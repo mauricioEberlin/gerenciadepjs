@@ -11,6 +11,8 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.senai.sp.info.gerenciadepjs.dao.UsuarioDAO;
@@ -74,7 +76,7 @@ public class UsuarioController {
 	
 	@PostMapping(value = {"/app/adm/usuario/salvar"})
 	public String salvar(@Valid Usuario usuario, BindingResult brUsuario,
-		                  @RequestParam(name = "permissao", required = false)Boolean ehAdministrador) {
+			@RequestAttribute(name = "permissao", required = false)String ehAdministrador) {
 		
 		if (usuarioDAO.buscarPorEmail(usuario.getEmail()) != null) {
 			brUsuario.addError(new FieldError("usuario", "email", "O e-mail ja existe"));
@@ -86,7 +88,7 @@ public class UsuarioController {
 				
 		System.out.println("É administrador: " + ehAdministrador);
 		
-		if (ehAdministrador) {
+		if (ehAdministrador == "true") {
 			usuario.setPermissao(Permissao.ADMINISTRADOR);
 		}else {
 			usuario.setPermissao(Permissao.COORDENADOR);

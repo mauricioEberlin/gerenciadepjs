@@ -30,16 +30,16 @@
 
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="row">
+                        <div class="row" >
 
 							<c:forEach items="${projetos}" var="projeto">
-                            <div class="col-md-4">
+                            <div id="lista" class="col-md-4">
                                 <div class="card card-projetos border border-primary">
                                     <div class="card-header">
-                                        <strong class="card-title">${projeto.nome}</strong>
+                                        <strong class="card-title">#${projeto.id} - ${projeto.nome}</strong>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text">${projeto.descricao}</p>
+                                        <p class="card-text">Status: ${projeto.status} <br>${projeto.descricao}</p>
                                         <button type="button" class="btn btn-info" style="margin-top:7%;" data-toggle="modal"
                                             data-target="#${projeto.id}">Ver detalhes</button>
                                     </div>
@@ -165,5 +165,18 @@
     <script src="${vendor}/select2/select2.min.js"></script>
     <!-- Main JS-->
     <script src="${js}/main.js"></script>
+    
+    	<script>
+                var filtro = document.getElementById('filtro-nome');
+				var tabela = document.getElementById('lista');
+				filtro.onkeyup = function() {
+				    var nomeFiltro = filtro.value;
+				    for (var i = 1; i < tabela.rows.length; i++) {
+				        var conteudoCelula = tabela.rows[i].cells[0].innerText;
+				        var corresponde = conteudoCelula.toLowerCase().indexOf(nomeFiltro) >= 0;
+				        tabela.rows[i].style.display = corresponde ? '' : 'none';         
+    }
+};                       
+     	</script>  
     </body>
 </html>

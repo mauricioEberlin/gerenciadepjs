@@ -17,5 +17,7 @@ public interface TecnologiaDAO {
 	public Tecnologia buscar(Long id);
 	
 	public Tecnologia buscarPorNome(String nome);
+
+	public List<Tecnologia> pesquisarPorNome(String nome);
 	
 }

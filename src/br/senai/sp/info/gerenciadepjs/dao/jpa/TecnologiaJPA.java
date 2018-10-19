@@ -71,5 +71,16 @@ public class TecnologiaJPA implements TecnologiaDAO{
 		}else {
 			return null;
 		}	
-	}	
+	}
+
+	@Override
+	public List<Tecnologia> pesquisarPorNome(String nome) {
+		String hql = "FROM Tecnologia t WHERE t.nome LIKE :nome";
+		
+		Query query = sessionFac.getCurrentSession().createQuery(hql);
+		query.setParameter("nome", "%"+nome+"%");
+		
+		return query.list();
+	}
+	
 }

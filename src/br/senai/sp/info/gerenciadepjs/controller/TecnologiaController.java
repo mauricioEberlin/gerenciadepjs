@@ -24,9 +24,14 @@ public class TecnologiaController {
 	private TecnologiaDAO dao;
 	
 	@GetMapping("/tecnologia")
-	public String AbrirMenuTecnologias (Model model) {
-		
-		model.addAttribute("tecnologias", dao.buscarTodos());
+	public String AbrirMenuTecnologias (Model model,
+			@RequestParam (name = "pesquisa", required = false)String nome) {
+
+		if (nome != null) {
+			model.addAttribute("tecnologias", dao.pesquisarPorNome(nome));
+		}else {
+			model.addAttribute("tecnologias", dao.buscarTodos());	
+		}
 		
 		return "tecnologia/menu";
 		

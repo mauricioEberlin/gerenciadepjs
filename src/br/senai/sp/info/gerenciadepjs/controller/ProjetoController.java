@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,10 +37,15 @@ public class ProjetoController {
 	@GetMapping("/projeto")
 	public String AbrirTelaProjetos (@RequestParam(name = "idStatus", required = false)Long idStatus, 
 									 @RequestParam(name = "idTec", required = false)Long id, 
+									 @RequestParam(name = "pesquisa", required = false)String nome, 
 									 Model model) {
 		
-		if(id == null && idStatus == null) {
+		if(id == null && idStatus == null && nome == null) {
 			model.addAttribute("projetos", dao.buscarTodos());	
+		}
+		
+		if(nome != null) {
+			model.addAttribute("projetos", dao.pesquisarPorNome(nome));
 		}
 		
 		if(id != null) {
@@ -89,7 +95,7 @@ public class ProjetoController {
 	public String salvar(@Valid Projeto projeto, BindingResult brprojeto, 
 			@RequestParam(name = "usuarioCriador.id")Long idUsuario, 
 			@RequestParam(name = "tecnologia.id")Long idTecnologia,
-			@RequestParam(name = "status")Status status,
+			@RequestParam(name = "status")String status,
 			Model model) {
 		
 		System.out.println("AQUI: " + projeto.getStatus());
@@ -106,18 +112,18 @@ public class ProjetoController {
 		
 		projeto.setUsuarioCriador(daoUsr.buscar(idUsuario));
 		projeto.setTecnologia(daoTec.buscar(idTecnologia));
-		projeto.setStatus(status);
+		//projeto.setStatus(status);
 		
-		/*switch(status) {
-			case "0": 
-				projeto.setStatus(Status.INICIADO);
-				break;
+		switch(status) {
 			case "1": 
-				projeto.setStatus(Status.EM_ANDAMENTO);
+				projeto.setStatus(Status.EM_ANDAMENTO);					
+				break;
+			case "2": 
+				projeto.setStatus(Status.FINALIZADO);					
 				break;
 			default: 
-				projeto.setStatus(Status.FINALIZADO);		
-		}*/
+				projeto.setStatus(Status.INICIADO);					
+		}
 				
 		if (dao.buscar(projeto.getId()) == null) {
 			dao.persistir(projeto);

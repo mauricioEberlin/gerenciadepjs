@@ -23,5 +23,7 @@ public interface ProjetoDAO {
 	public List<Projeto> buscarPorTecnologia(Long id);
 	
 	public List<Projeto> buscarPorStatus(Status status);
+
+	public List<Projeto> pesquisarPorNome(String nome);
 	
 }

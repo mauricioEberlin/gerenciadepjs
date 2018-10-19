@@ -109,29 +109,17 @@
   border-color: #005fa3;
 }
 
-
-
 /* Tela de Recuperação de senha */
-
-
-
-
-
 
 /* Tela de login 2*/
 .login-wrap {
   max-width: 540px;
- 
   margin: 0 auto; 
 }
 
 .login-content {
- 
   padding: 39px 30px 20px;
- 
 }
-
-
 
 /* Header mobile */
 .header-mobile{
@@ -149,9 +137,16 @@
   padding-left: 30px;
   background: #005fa3;
 }
-
-
-
+.header-mobile .hamburger{
+  background-color: #005fa3;
+}
+@media (max-width:991px){
+	
+	.form-header{
+	display:none;
+}
+	
+}
 
 
 /* Tela de login */

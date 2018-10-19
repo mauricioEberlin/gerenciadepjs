@@ -4,8 +4,17 @@
 <c:url value="../assets/vendor" var="vendor" />
 <c:url value="../assets/js" var="js" />
 <c:url value="../assets/imagens" var="img" />
-
 <c:url value="/sair" var="urlSair"/>
+
+<c:if test="${tecnologias!=null}">
+<c:url value="/app/tecnologia" var="urlPesquisar"/> 
+<c:url value="da tecnologia" var="placeholder"/>
+</c:if>
+
+<c:if test="${projetos!=null}">
+<c:url value="/app/projeto" var="urlPesquisar"/> 
+<c:url value="do projeto" var="placeholder"/>
+</c:if>
 
 <body>
     <div class="page-wrapper">
@@ -13,7 +22,16 @@
         <header class="header-mobile d-block d-lg-none">
             <div class="header-mobile__bar">
                 <div class="container-fluid">
+
                     <div class="header-mobile-inner">
+                            <form class="form-headerr" action="" method="POST">
+                            <input class="au-input au-input--xl" style="width:170px" 
+                              type="text" name="search"
+                                placeholder="" />
+                            <button class="au-btn--submit" type="submit">
+                                <i class="zmdi zmdi-search"></i>
+                             </button>
+                            </form>
                         <button class="hamburger hamburger--slider" type="button">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
@@ -118,8 +136,8 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="" />
+                           <form class="form-header" action="${urlPesquisar}" method="GET">
+                                <input class="au-input au-input--xl" type="text" name="pesquisa" placeholder="Nome ${placeholder}"/>
                                 <button class="au-btn--submit" type="submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>

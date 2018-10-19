@@ -104,4 +104,14 @@ public class ProjetoJPA implements ProjetoDAO {
 			Query query = sessionFac.getCurrentSession().createQuery(hql);
 			return query.list();
 	}
+
+	@Override
+	public List<Projeto> pesquisarPorNome(String nome) {
+		String hql = "FROM Projeto p WHERE p.nome LIKE :nome OR p.id = :nome OR p.responsavelBRQ LIKE :nome";
+		
+		Query query = sessionFac.getCurrentSession().createQuery(hql);
+		query.setParameter("nome", nome+"%");
+		
+		return query.list();
+	}
 }
