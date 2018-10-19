@@ -65,7 +65,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="http://www.brq.com">
                     <img src="${img}/logo.png" style="width: 130px; margin-left: 30%; margin-top: 5%;" alt="Cool Admin" />
                 </a>
             </div>

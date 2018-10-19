@@ -28,7 +28,7 @@
                                         <h2 class="title-1" style="font-size: 20px; color: #fff;">Cadastro de Projetos</h2>
 
                                     </div>                                    
-                               <form:form modelAttribute="projeto" action="${urlSalvar}" method="post">
+                               <form:form modelAttribute="projeto" action="${urlSalvar}" method="post" id="formulario">
                                     <div class="card-body card-block">
 										<form:hidden path="usuarioCriador.id" value="${usuarioAutenticado.id}"/>
 										<form:hidden path="status"/>
@@ -142,7 +142,7 @@
                                         <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
                                             <i class="fa fa-dot-circle-o"></i> Salvar
                                         </button>
-                                        <button type="reset" class="btn btn-danger btn-sm">
+                                        <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
                                             <i class="fa fa-ban"></i> Limpar
                                         </button>
                                     </div>
@@ -176,5 +176,5 @@
     <script src="${vendor}/select2/select2.min.js"></script>
     <!-- Main JS-->
     <script src="${js}/main.js"></script>
-</body>
+ </body>
 </html>

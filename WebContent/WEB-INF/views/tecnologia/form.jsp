@@ -29,7 +29,7 @@
                                             Tecnologias</h2>
                                     </div>
                                     <div class="card-body card-block">
-                                        <form:form modelAttribute="tecnologia" action="${urlSalvar}" method="post" class="form-horizontal">
+                                        <form:form modelAttribute="tecnologia" action="${urlSalvar}" method="post" class="form-horizontal" id="formulario">
 											<form:hidden path="id" />
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
@@ -58,7 +58,7 @@
                                         data-target="#staticModal">
                                             <i class="fa fa-dot-circle-o"></i> Salvar           
                                         </button>
-                                        <button type="reset" class="btn btn-danger btn-sm">
+                                        <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
                                             <i class="fa fa-ban"></i> Limpar
                                         </button>
                                         

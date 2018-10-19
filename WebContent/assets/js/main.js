@@ -1,3 +1,6 @@
+function limparFormulario() {
+    document.getElementById("formulario").reset();
+}
 
 (function ($) {
   // USE STRICT

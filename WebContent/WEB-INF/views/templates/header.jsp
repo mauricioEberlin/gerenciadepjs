@@ -24,10 +24,10 @@
                 <div class="container-fluid">
 
                     <div class="header-mobile-inner">
-                            <form class="form-headerr" action="" method="POST">
+                            <form class="form-headerr" action="${urlPesquisar}" method="GET">
                             <input class="au-input au-input--xl" style="width:170px" 
-                              type="text" name="search"
-                                placeholder="" />
+                              type="text" name="pesquisa"
+                                placeholder="Nome ${placeholder}"/>
                             <button class="au-btn--submit" type="submit">
                                 <i class="zmdi zmdi-search"></i>
                              </button>
@@ -85,7 +85,7 @@
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="http://www.brq.com">
                     <img src="${img}/logo.png" style="width: 130px; margin-left: 30%; margin-top: 5%;" alt="Cool Admin" />
                 </a>
             </div>

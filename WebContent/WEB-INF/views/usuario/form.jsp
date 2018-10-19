@@ -4,8 +4,8 @@
 
 <c:url value="/app/adm/usuario/salvar" var="urlSalvar" />
 
-<c:url value="../assets/vendor" var="vendor" />
-<c:url value="../assets/js" var="js" />
+<c:url value="../../../assets/vendor" var="vendor" />
+<c:url value="../../../assets/js" var="js" />
 <c:url value="/assets/imagens" var="img" />
 
 <!DOCTYPE html>
@@ -28,7 +28,7 @@
                                         <h2 class="title-1" style="font-size: 20px; color: #fff;">Cadastro de Usuários</h2>
                                     </div>
                                     
-                                    <form:form modelAttribute="usuario" action="${urlSalvar}" method="post">
+                                    <form:form modelAttribute="usuario" action="${urlSalvar}" method="post" id="formulario">
                                     <div class="card-body card-block">                         
                                   	<form:hidden path="id" />
                                             <div class="row form-group">
@@ -113,7 +113,7 @@
                                         <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
                                             <i class="fa fa-dot-circle-o"></i> Salvar
                                         </button>
-                                        <button type="reset" class="btn btn-danger btn-sm">
+                                        <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
                                             <i class="fa fa-ban"></i> Limpar
                                         </button>
                                     </div>
