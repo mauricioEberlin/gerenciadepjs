@@ -10,7 +10,7 @@
 
 <head>
     <!-- Title Page-->
-    <title>Cadastro de Tecnologias</title>
+    <title>${tecnologia.id == null ? 'Cadastro' : 'Edição'} de Tecnologia ${tecnologia.nome}</title>
     <c:import url="../templates/head2.jsp"/>
 
 </head>
@@ -58,9 +58,12 @@
                                         data-target="#staticModal">
                                             <i class="fa fa-dot-circle-o"></i> Salvar           
                                         </button>
+                                        
+                                        <c:if test="${tecnologia.id == null}">
                                         <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
                                             <i class="fa fa-ban"></i> Limpar
                                         </button>
+                                        </c:if>
                                         
                                     </div>  
                                     </form:form>                                 
@@ -86,7 +89,7 @@
                        </div>
                        <div class="modal-body">
                            <p>
-                              Sua tecnologia foi cadastrado com sucesso!
+                              Sua tecnologia foi ${tecnologia.id == null ? 'cadastrada' : 'editada'} com sucesso!
                            </p>
                        </div>
                        <div class="modal-footer">

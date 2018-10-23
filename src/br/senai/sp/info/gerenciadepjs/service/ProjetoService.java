@@ -33,6 +33,10 @@ public class ProjetoService {
 		return p;
 	}
 	
+	public List<Projeto> pesquisarPorNome(String nome){
+		return dao.pesquisarPorNome(nome);
+	}
+	
 	public List<Projeto> buscarPorTecnologia(Long idTecnologia) {		
 		return dao.buscarPorTecnologia(idTecnologia);			
 	}	

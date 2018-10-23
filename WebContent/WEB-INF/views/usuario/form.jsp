@@ -91,10 +91,10 @@
                                                     <label for="select" class=" form-control-label">Permissão</label>
                                                 </div>
                                                  <div class="col-12 col-md-9">
-                                                 <form:select path="permissao" id="select" class="form-control">                                               
-                                                 	<option value="false">Coordenador</option>
-                                                	<option value="true">Administrador</option>
-                                                 </form:select>
+                                                 <select name="tipoPermissao" id="select" class="form-control">                                               
+                                                 	<option value="falso">Coordenador</option>
+                                                	<option value="verdadeiro">Administrador</option>
+                                                 </select>
                                                         
                                                        <!-- <label>
 			                                            Administrador

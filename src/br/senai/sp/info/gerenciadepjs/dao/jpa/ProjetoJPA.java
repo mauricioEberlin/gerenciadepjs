@@ -87,30 +87,20 @@ public class ProjetoJPA implements ProjetoDAO {
 	}
 
 	@Override
-	public List<Projeto> buscarPorStatus(Status status) {
+	public List<Projeto> buscarPorStatus(Integer statusId) {
 		
-			String hql = "FROM Projeto p ";
-			switch (status) {
-			case INICIADO:
-				hql += "WHERE p.status = 0"; 
-				break;
-			case EM_ANDAMENTO:
-				hql += "WHERE p.status = 1";
-				break;
-			case FINALIZADO:
-				hql += "WHERE p.status = 2";
-				break;			
-			}		
-			Query query = sessionFac.getCurrentSession().createQuery(hql);
-			return query.list();
+		String hql = "FROM Projeto p WHERE status.id = :id";
+		Query query = sessionFac.getCurrentSession().createQuery(hql);
+		query.setParameter("id", statusId);;
+		return query.list();
 	}
 
 	@Override
 	public List<Projeto> pesquisarPorNome(String nome) {
-		String hql = "FROM Projeto p WHERE p.nome LIKE :nome OR p.id = :nome OR p.responsavelBRQ LIKE :nome";
+		String hql = "FROM Projeto p WHERE p.nome LIKE :nome OR p.id LIKE :nome OR p.responsavelBRQ LIKE :nome";
 		
 		Query query = sessionFac.getCurrentSession().createQuery(hql);
-		query.setParameter("nome", nome+"%");
+		query.setParameter("nome", "%"+nome+"%");
 		
 		return query.list();
 	}

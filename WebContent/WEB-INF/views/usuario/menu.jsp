@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url value="/app/adm/usuario" var="urlListar" />
 <c:url value="/app/adm/usuario/novo" var="urlNovo" />
 
 <!DOCTYPE html>
@@ -18,7 +17,7 @@
 		<tr>
 			<div>
 			<td>
-				<a href="${urlListar}?id=${usuario.id}">${usuario.nome}</a>
+				<a href="${urlNovo}?id=${usuario.id}">${usuario.nome}</a>
 			</td>
 			</div>			
 		</tr>

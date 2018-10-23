@@ -31,15 +31,15 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="row" >
-
-							<c:forEach items="${projetos}" var="projeto">
+                        
+							<c:forEach items="${projetos}" begin="1" end="9" var="projeto">
                             <div id="lista" class="col-md-4">
                                 <div class="card card-projetos border border-primary">
                                     <div class="card-header">
                                         <strong class="card-title">#${projeto.id} - ${projeto.nome}</strong>
                                     </div>
                                     <div class="card-body">
-                                        <p class="card-text">Status: ${projeto.status} <br>${projeto.descricao}</p>
+                                        <p class="card-text">Status: ${projeto.status.nome} <br>${projeto.descricao}</p>
                                         <button type="button" class="btn btn-info" style="margin-top:7%;" data-toggle="modal"
                                             data-target="#${projeto.id}">Ver detalhes</button>
                                     </div>
@@ -133,7 +133,7 @@
 									</tr>
 									<tr>
 										<td>Status</td>
-										<td>${projeto.status}</td>
+										<td>${projeto.status.nome}</td>
 									</tr>								
 								</tbody>
 							</table>

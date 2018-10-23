@@ -45,4 +45,13 @@ public class ProjetoRestController {
 			return ResponseEntity.status(500).build();
 		}
 	} 
+	
+	@GetMapping("/pesquisa{nome}")
+	public ResponseEntity<Object> pequisarPorNome(@PathVariable String nome){
+		try {
+			return ResponseEntity.ok(projetoService.pesquisarPorNome(nome));
+		} catch (Exception e) {
+			return ResponseEntity.status(500).build();
+		}	
+	}
 }

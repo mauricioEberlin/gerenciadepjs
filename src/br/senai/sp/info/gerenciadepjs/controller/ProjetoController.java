@@ -10,15 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import br.senai.sp.info.gerenciadepjs.dao.ProjetoDAO;
+import br.senai.sp.info.gerenciadepjs.dao.StatusDAO;
 import br.senai.sp.info.gerenciadepjs.dao.TecnologiaDAO;
-import br.senai.sp.info.gerenciadepjs.dao.UsuarioDAO;
 import br.senai.sp.info.gerenciadepjs.model.Projeto;
-import br.senai.sp.info.gerenciadepjs.model.Status;
 
 
 @Controller
@@ -32,15 +30,15 @@ public class ProjetoController {
 	private TecnologiaDAO daoTec;
 	
 	@Autowired
-	private UsuarioDAO daoUsr;
+	private StatusDAO daoStatus;
 	
 	@GetMapping("/projeto")
-	public String AbrirTelaProjetos (@RequestParam(name = "idStatus", required = false)Long idStatus, 
+	public String AbrirTelaProjetos (@RequestParam(name = "idStatus", required = false)Integer idStatus, 
 									 @RequestParam(name = "idTec", required = false)Long id, 
 									 @RequestParam(name = "pesquisa", required = false)String nome, 
 									 Model model) {
 		
-		if(id == null && idStatus == null && nome == null) {
+		if(id == null && nome == null) {
 			model.addAttribute("projetos", dao.buscarTodos());	
 		}
 		
@@ -53,22 +51,17 @@ public class ProjetoController {
 		}
 		
 		if(idStatus != null) {
-			if(idStatus == 0){
-				model.addAttribute("projetos", dao.buscarPorStatus(Status.INICIADO));		
-			}else if(idStatus == 1) {
-				model.addAttribute("projetos", dao.buscarPorStatus(Status.EM_ANDAMENTO));			
-			}else if (idStatus == 2) {
-				model.addAttribute("projetos", dao.buscarPorStatus(Status.FINALIZADO));
-			}
+			model.addAttribute("projetos", dao.buscarPorStatus(idStatus));
 		}
 		return "projeto/menu";
 	}
 	
 	@GetMapping("/projeto/novo")
 	public String AbrirTelaNovoProjeto(Model model) {
-		
-		model.addAttribute("projeto", new Projeto());
+				
+		model.addAttribute("status", daoStatus.buscarTodos());
 		model.addAttribute("tecnologias", daoTec.buscarTodos());
+		model.addAttribute("projeto", new Projeto());
 				
 		return "projeto/form";
 		
@@ -77,9 +70,10 @@ public class ProjetoController {
 	@GetMapping("/projeto/editar")
 	public String AbrirEditarProjeto(@RequestParam(required = true)Long id, Model model) {
 		
-		model.addAttribute("projeto", dao.buscar(id));
+		model.addAttribute("status", daoStatus.buscarTodos());
 		model.addAttribute("tecnologias", daoTec.buscarTodos());
-		
+		model.addAttribute("projeto", dao.buscar(id));
+			
 		return "projeto/form";
 	}
 	
@@ -93,12 +87,7 @@ public class ProjetoController {
 	
 	@PostMapping("/projeto/salvar")
 	public String salvar(@Valid Projeto projeto, BindingResult brprojeto, 
-			@RequestParam(name = "usuarioCriador.id")Long idUsuario, 
-			@RequestParam(name = "tecnologia.id")Long idTecnologia,
-			@RequestParam(name = "status")String status,
 			Model model) {
-		
-		System.out.println("AQUI: " + projeto.getStatus());
 		
 		if (dao.buscarPorNome(projeto.getNome()) != null && dao.buscar(projeto.getId()) == null) {
 			brprojeto.addError(new FieldError("projeto", "nome", "O nome já existe"));
@@ -110,21 +99,6 @@ public class ProjetoController {
 			return "projeto/novo";
 		}
 		
-		projeto.setUsuarioCriador(daoUsr.buscar(idUsuario));
-		projeto.setTecnologia(daoTec.buscar(idTecnologia));
-		//projeto.setStatus(status);
-		
-		switch(status) {
-			case "1": 
-				projeto.setStatus(Status.EM_ANDAMENTO);					
-				break;
-			case "2": 
-				projeto.setStatus(Status.FINALIZADO);					
-				break;
-			default: 
-				projeto.setStatus(Status.INICIADO);					
-		}
-				
 		if (dao.buscar(projeto.getId()) == null) {
 			dao.persistir(projeto);
 		}else {

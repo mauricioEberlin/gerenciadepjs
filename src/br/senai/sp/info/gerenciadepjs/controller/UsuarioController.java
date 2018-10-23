@@ -1,5 +1,6 @@
 package br.senai.sp.info.gerenciadepjs.controller;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -11,7 +12,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -36,6 +36,38 @@ public class UsuarioController {
 		return "index";
 	}
 	
+	@GetMapping(value = {"/esqueciasenha"})
+	public String AbrirEsqueciSenha(Model model){		
+		model.addAttribute("usuario", new Usuario());
+		return "forgotPass";
+	}
+	
+	@PostMapping(value = {"/usuario/enviarsenha"})
+	public String EnviarSenhaParaEmail(@ModelAttribute("usuario") Usuario usuario, BindingResult brUsuario){		
+		
+		if(usuarioDAO.buscarPorEmail(usuario.getEmail()) == null) {
+			brUsuario.addError(new FieldError(usuario.getEmail(), usuario.getEmail(), "Este email nao existe em nosso sistema"));
+		}
+		
+		if (brUsuario.hasErrors()) {				
+			System.out.println(brUsuario.getAllErrors());
+			return "forgotpass";
+		}
+
+		String senhaNova = "123456";
+		
+		String titulo = "BQR - recuperação de senha";		
+		String corpo = "Olá, " + usuario.getEmail() + "! Recupere sua senha. <br>"
+				+ "A nova senha é "+senhaNova;
+		
+		try {
+			EmailUtils.enviarEmail(titulo, corpo, usuario.getEmail());
+		}catch (MessagingException e) {
+			e.printStackTrace();
+		}		
+		return "forgotpass";
+	}
+	
 	@PostMapping({"/usuario/autenticar"})
 	public String autenticar(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult br, HttpSession session) {
 		usuario.hashearSenha();
@@ -47,7 +79,7 @@ public class UsuarioController {
 		}
 		
 		if(br.hasFieldErrors("email") || br.hasFieldErrors("senha")) {
-			System.out.println("Erro: " + br);
+			System.out.println("ERRO DE AUTENTICAÇÃO: " + br);
 			return "index";
 		}
 		
@@ -55,28 +87,19 @@ public class UsuarioController {
 		return "redirect:/app/tecnologia";
 	}
 	
-	@GetMapping("/app/adm/usuario")
-	public String abrirLista(@RequestParam (name = "id", required = false)Long id, Model model) {
+	@GetMapping("/app/adm/usuario/novo")
+	public String FormNovoUsuario(@RequestParam (name = "id", required = false)Long id, Model model) {
 		if (id != null) {
 			model.addAttribute("usuario", usuarioDAO.buscar(id));
-			return "usuario/form";
 		}else{
-			model.addAttribute("usuarios", usuarioDAO.buscarTodos());
-			return "usuario/menu";
+			model.addAttribute("usuario", new Usuario());
 		}
-	}
-	
-	@GetMapping("/app/adm/usuario/novo")
-	public String FormNovoUsuario(Model model) {
-		
-		model.addAttribute("usuario", new Usuario());
-		
 		return "usuario/form";
 	}
 	
 	@PostMapping(value = {"/app/adm/usuario/salvar"})
-	public String salvar(@Valid Usuario usuario, BindingResult brUsuario,
-			@RequestAttribute(name = "permissao", required = false)String ehAdministrador) {
+	public String salvar(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult brUsuario,
+			@RequestParam(name = "tipoPermissao", required = false)String seraAdm) {
 		
 		if (usuarioDAO.buscarPorEmail(usuario.getEmail()) != null) {
 			brUsuario.addError(new FieldError("usuario", "email", "O e-mail ja existe"));
@@ -85,10 +108,8 @@ public class UsuarioController {
 			System.out.println(brUsuario.hasErrors());
 			return "usuario/form";
 		}
-				
-		System.out.println("É administrador: " + ehAdministrador);
 		
-		if (ehAdministrador == "true") {
+		if (seraAdm.equals("verdadeiro")) {
 			usuario.setPermissao(Permissao.ADMINISTRADOR);
 		}else {
 			usuario.setPermissao(Permissao.COORDENADOR);
@@ -115,9 +136,8 @@ public class UsuarioController {
 			usuarioBanco.setPermissao(usuario.getPermissao());
 			
 			usuarioDAO.alterar(usuarioBanco);
-		}
-		
-		return "redirect:/app/adm/usuario";
+		}		
+		return "redirect:/app/tecnologia";
 	}
 	
 	@GetMapping({"/sair"})

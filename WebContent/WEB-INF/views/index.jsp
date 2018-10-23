@@ -1,42 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <c:url value="/" var="raiz" />
 <c:url value="/usuario/autenticar" var="autenticarUsuario" />
 <c:url value="/assets/imagens" var="imagensRaiz" />
+<c:url value="/esqueciasenha" var="esqueciAS" />
 
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<title>Login</title>
-
-<style>
-*{
-font-family: Arial;
-}
-</style>
-
- <!-- Required meta tags-->
+ 	<!-- Required meta tags-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-
     <!-- Title Page-->
     <title>Login</title>
-
     <!-- Fontfaces CSS-->
     <link href="assets/css/font-face.css" rel="stylesheet" media="all">
     <link href="assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
     <link href="assets/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
     <link href="assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-
     <!-- Bootstrap CSS-->
     <link href="assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-
     <!-- Vendor CSS-->
     <link href="assets/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
     <link href="assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
@@ -45,11 +33,9 @@ font-family: Arial;
     <link href="assets/vendor/slick/slick.css" rel="stylesheet" media="all">
     <link href="assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
     <link href="assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
-
     <!-- Main CSS-->
     <link href="assets/css/theme.css" rel="stylesheet" media="all">
     <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 <body class="animsition">
     <div class="page-wrapper">
@@ -75,7 +61,7 @@ font-family: Arial;
                                 <div class="login-checkbox">
                                   
                                     <label>
-                                        <a href="Recuperar senha.html" style="color:#005fa3;">Esqueceu a senha? </a>
+                                        <a href="${esqueciAS}" style="color:#005fa3;">Esqueceu a senha? </a>
                                     </label>
                                 </div>
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" style="background-color: #009cde;">Login</button>

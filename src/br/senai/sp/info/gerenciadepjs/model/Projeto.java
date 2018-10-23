@@ -29,6 +29,11 @@ public class Projeto {
 	@JoinColumn(nullable = false, name = "tecnologia_id")
 	private Tecnologia tecnologia;
 	
+	@ManyToOne
+	@NotNull
+	@JoinColumn(nullable = false, name = "status_id")
+	private Status status;
+	
 	@Column(length = 40, nullable = false, unique = false)
 	@NotNull
 	@Size(min = 1, max = 40)
@@ -60,9 +65,6 @@ public class Projeto {
 	@Size(max = 500)
 	private String descricao;
 	
-	@NotNull
-	private Status status = Status.INICIADO;
-
 	//G&S
 	
 	public Tecnologia getTecnologia() {

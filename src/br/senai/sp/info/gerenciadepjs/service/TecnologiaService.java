@@ -26,5 +26,9 @@ public class TecnologiaService {
 			throw new EntidadeNaoEncontradaException();
 		}	
 		return t;
-	}	
+	}
+	
+	public List<Tecnologia> pesquisarPorNome(String nome){
+		return dao.pesquisarPorNome(nome);
+	}
 }

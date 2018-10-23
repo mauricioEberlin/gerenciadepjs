@@ -167,6 +167,7 @@
                                                         <a href="#">${usuarioAutenticado.nome} ${usuarioAutenticado.sobrenome}</a>
                                                     </h5>
                                                     <span class="email">${usuarioAutenticado.email}</span>
+                                                    <span class="email">${usuarioAutenticado.permissao}</span>
                                                 </div>
                                             </div>
 

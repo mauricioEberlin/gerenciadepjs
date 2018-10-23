@@ -115,7 +115,7 @@
             <header class="header-desktop">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="header-wrap">                           
+                        <div class="header-wrap" style="display: flex; justify-content: flex-end ">                           
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu"></div>

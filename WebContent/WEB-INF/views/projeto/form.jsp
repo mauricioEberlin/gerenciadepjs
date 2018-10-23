@@ -7,6 +7,7 @@
 <c:url value="../../assets/imagens" var="img" />
 
 <c:url value="/app/projeto/salvar" var="urlSalvar" />
+<c:url value="/app/projeto/deletar" var="urlDeletar" />
 
 <!DOCTYPE html>
 <html>
@@ -31,7 +32,6 @@
                                <form:form modelAttribute="projeto" action="${urlSalvar}" method="post" id="formulario">
                                     <div class="card-body card-block">
 										<form:hidden path="usuarioCriador.id" value="${usuarioAutenticado.id}"/>
-										<form:hidden path="status"/>
 										
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
@@ -106,7 +106,9 @@
                                                 <div class="col-12 col-md-9">
                                                     <form:select path="tecnologia.id" id="select" class="form-control">
                                                         <c:forEach items="${tecnologias}" var="tecnologia">
-					                                      <option value="${tecnologia.id}">${tecnologia.nome}</option> 
+					                                      <option value="${tecnologia.id}" ${projeto.tecnologia.id eq tecnologia.id ? 'selected' : ''}>
+					                                      ${tecnologia.nome}
+					                                      </option> 
 				                                        </c:forEach> 
                                                     </form:select>
                                                     <small class="form-text text-muted">Por favor escolha a tecnologia</small>
@@ -118,15 +120,17 @@
                                                     <label for="select" class=" form-control-label">Status</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <form:select path="status" name="select" id="select" class="form-control">                                                       
-					                                      <option value="0">Iniciado</option>
-					                                      <option value="1">Em andamento</option>
-					                                      <option value="2">Finalizado</option> 
+                                                    <form:select path="status.id" id="select" class="form-control">                                                       
+					                                      <c:forEach items="${status}" var="status"> 
+					                                      	<option value="${status.id}" ${projeto.status.id eq status.id ? 'selected' : ''}>
+					                                      	${status.nome}
+					                                      	</option>
+					                                      </c:forEach>
                                                     </form:select>
                                                     <small class="form-text text-muted">Por favor insira o status</small>
                                                 </div>
                                             </div>
-                                            
+                                          
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="textarea-input" class=" form-control-label">Descrição</label>
@@ -142,9 +146,20 @@
                                         <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
                                             <i class="fa fa-dot-circle-o"></i> Salvar
                                         </button>
+                                        <c:if test="${projeto.id == null}">
                                         <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
                                             <i class="fa fa-ban"></i> Limpar
                                         </button>
+                                        </c:if>
+                                        
+                                         <c:if test="${projeto.id != null}">
+                                        <a href="${urlDeletar}?id=${projeto.id}">
+                                        <button type="button" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-ban"></i> Deletar
+                                        </button>
+                                        </a>
+                                        </c:if>
+                                        
                                     </div>
                                     </form:form>
                                 </div>
