@@ -3,6 +3,7 @@
 
 <c:url value="../../assets/imagens" var="img" />
 
+<c:url value="/app/usuario/editar" var="urlEditarUsuario" />
 <c:url value="/sair" var="urlSair"/>
 
 <body>
@@ -51,10 +52,12 @@
                             <a href="/gerenciadepjs/app/tecnologia/novo">
                                 Cadastro de Tecnologias</a>
                         </li>
-                        <li>
+                        <c:if test="${usuarioAutenticado.permissao eq 'ADMINISTRADOR'}">
+                        <li>                           
                             <a href="/gerenciadepjs/app/adm/usuario/novo">
                                 Cadastro de usuário</a>
                         </li>
+                        </c:if>
 
                     </ul>
                 </div>
@@ -99,10 +102,12 @@
                             <a href="/gerenciadepjs/app/tecnologia/novo">
                                 Cadastro de Tecnologias</a>
                         </li>
+                        <c:if test="${usuarioAutenticado.permissao eq 'ADMINISTRADOR'}">
                         <li>
                             <a href="/gerenciadepjs/app/adm/usuario/novo">
                                 Cadastro de Usuário</a>
                         </li>
+                        </c:if>
 					</ul>
                 </nav>
             </div>
@@ -141,9 +146,13 @@
                                                         <a href="#">${usuarioAutenticado.nome} ${usuarioAutenticado.sobrenome}</a>
                                                     </h5>
                                                     <span class="email">${usuarioAutenticado.email}</span>
+                                                    <span class="email">${usuarioAutenticado.permissao}</span>
                                                 </div>
                                             </div>
-
+											<div class="account-dropdown__footer">
+												<a href="${urlEditarUsuario}?id=${usuarioAutenticado.id}"> <i class="zmdi zmdi-edit"></i>Alterar dados
+												</a>
+											</div>
                                             <div class="account-dropdown__footer">
                                                 <a href="${urlSair}">
                                                 <i class="zmdi zmdi-power"></i>Sair</a>

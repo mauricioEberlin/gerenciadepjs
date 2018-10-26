@@ -31,8 +31,8 @@
                                     </div>                                    
                                <form:form modelAttribute="projeto" action="${urlSalvar}" method="post" id="formulario">
                                     <div class="card-body card-block">
-										<form:hidden path="usuarioCriador.id" value="${usuarioAutenticado.id}"/>
 										
+										<c:if test="${projeto.id == null}">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label class=" form-control-label">ID</label>
@@ -42,6 +42,9 @@
                                                     <small class="form-text text-muted">Insira o id do projeto</small>
                                                 </div>
                                             </div>
+                                        </c:if>
+                                        <form:hidden path="id" value="${projeto.id}"/>
+                                        
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label class=" form-control-label">Nome</label>
@@ -146,12 +149,11 @@
                                         <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
                                             <i class="fa fa-dot-circle-o"></i> Salvar
                                         </button>
-                                        <c:if test="${projeto.id == null}">
+
                                         <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
-                                            <i class="fa fa-ban"></i> Limpar
+                                            <i class="fa fa-ban"></i> ${projeto.id != null ? 'Reset' : 'Limpar'}
                                         </button>
-                                        </c:if>
-                                        
+                                                                           
                                          <c:if test="${projeto.id != null}">
                                         <a href="${urlDeletar}?id=${projeto.id}">
                                         <button type="button" class="btn btn-danger btn-sm">

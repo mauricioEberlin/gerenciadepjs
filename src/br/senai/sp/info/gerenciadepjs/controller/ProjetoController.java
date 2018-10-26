@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -17,6 +18,7 @@ import br.senai.sp.info.gerenciadepjs.dao.ProjetoDAO;
 import br.senai.sp.info.gerenciadepjs.dao.StatusDAO;
 import br.senai.sp.info.gerenciadepjs.dao.TecnologiaDAO;
 import br.senai.sp.info.gerenciadepjs.model.Projeto;
+import br.senai.sp.info.gerenciadepjs.model.Usuario;
 
 
 @Controller
@@ -102,7 +104,7 @@ public class ProjetoController {
 		if (dao.buscar(projeto.getId()) == null) {
 			dao.persistir(projeto);
 		}else {
-			Projeto projetoBanco = dao.buscar(projeto.getId());
+			Projeto projetoBanco = dao.buscar(projeto.getId());	
 			BeanUtils.copyProperties(projeto, projetoBanco, "id");
 			dao.alterar(projetoBanco);
 		}		

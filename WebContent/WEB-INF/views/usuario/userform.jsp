@@ -2,19 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<c:url value="/app/adm/usuario/salvar" var="urlSalvar" />
+<c:url value="/app/usuario/salvar" var="urlSalvar" />
 
-<c:url value="../../../assets/vendor" var="vendor" />
-<c:url value="../../../assets/js" var="js" />
+<c:url value="../../assets/vendor" var="vendor" />
+<c:url value="../../assets/js" var="js" />
 <c:url value="/assets/imagens" var="img" />
 
 <!DOCTYPE html>
 <html>
 <head>
-<c:import url="../templates/head3.jsp"/>
+<c:import url="../templates/head2.jsp"/>
 <title>Cadastro de Usuário</title>
 </head>
-<c:import url="../templates/header3.jsp"/>
+<c:import url="../templates/header2.jsp"/>
             
              <!-- MAIN CONTENT-->
             <div class="main-content">
@@ -57,16 +57,7 @@
                                                     <form:input path="cargo" type="text" id="text-input" name="text-input" class="form-control"/>
                                                     <small class="form-text text-muted">Por favor insira seu cargo</small>
                                                 </div>
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">E-mail</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <form:input path="email" type="email" id="email-input" name="email-input" class="form-control"/>
-                                                    <small class="form-text text-muted">Insira o seu email</small>
-                                                </div>
-                                            </div>
+                                            </div>                                            
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
                                                     <label for="tel-input" class=" form-control-label">Telefone</label>
@@ -78,44 +69,31 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Senha</label>
+                                                    <label class=" form-control-label">Senha antiga</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <form:input path="senha" type="password" id="password-input" name="password-input"
+                                                    <input type="password" id="password-input" name="senha"
                                                         class="form-control"/>
-                                                    <small class="form-text text-muted">Insira a sua senha</small>
+                                                    <small class="form-text text-muted">Insira sua senha antiga</small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="select" class=" form-control-label">Permissão</label>
+                                                    <label class=" form-control-label">Nova senha</label>
                                                 </div>
-                                                 <div class="col-12 col-md-9">
-                                                 <select name="tipoPermissao" id="select" class="form-control">                                               
-                                                 	<option value="falso">Coordenador</option>
-                                                	<option value="verdadeiro">Administrador</option>
-                                                 </select>
-                                                        
-                                                       <!-- <label>
-			                                            Administrador
-			                                           <input type="checkbox" name="isAdministrador" 
-			                                           ${usuario.permissao eq 'ADMINISTRADOR' ? 'checked'  : ''}
-			                                           id="inputAdministrador">
-		                                           </label> --> 
-                                                      
-                                                    <small class="form-text text-muted">Por favor escolha a permissão
-                                                        do usuario</small>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="password" id="password-input" name="senhaNova"
+                                                        class="form-control"/>
+                                                    <small class="form-text text-muted">Insira a sua nova senha</small>
                                                 </div>
-                                            </div>
-                                        
+                                            </div>                                                                                   
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
                                             <i class="fa fa-dot-circle-o"></i> Salvar
                                         </button>
-                                                                                                                  
                                          <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
-                                            <i class="fa fa-ban"></i> ${usuario.id != null ? 'Reset' : 'Limpar'}
+                                            <i class="fa fa-ban"></i> ${projeto.id != null ? 'Reset' : 'Limpar'}
                                         </button>
                                     </div>
                                 </div>                              

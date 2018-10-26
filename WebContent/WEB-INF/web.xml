@@ -32,22 +32,22 @@
 
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
-		<location>/erro/servidor</location>
+		<location>/erros/servidor</location>
 	</error-page>
 
 	<error-page>
 		<error-code>404</error-code>
-		<location>/erro/404</location>
+		<location>/erros/404</location>
 	</error-page>
 
 	<error-page>
 		<error-code>403</error-code>
-		<location>/erro/403</location>
+		<location>/erros/403</location>
 	</error-page>
 
 	<error-page>
 		<error-code>401</error-code>
-		<location>/erro/401</location>
+		<location>/erros/401</location>
 	</error-page>
 
 	<filter>

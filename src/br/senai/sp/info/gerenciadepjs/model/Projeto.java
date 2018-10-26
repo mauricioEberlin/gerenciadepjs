@@ -22,10 +22,6 @@ public class Projeto {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(nullable = false, name = "usuario_id")
-	private Usuario usuarioCriador;
-	
-	@ManyToOne
 	@JoinColumn(nullable = false, name = "tecnologia_id")
 	private Tecnologia tecnologia;
 	
@@ -81,14 +77,6 @@ public class Projeto {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Usuario getUsuarioCriador() {
-		return usuarioCriador;
-	}
-
-	public void setUsuarioCriador(Usuario usuarioCriador) {
-		this.usuarioCriador = usuarioCriador;
 	}
 
 	public String getNome() {

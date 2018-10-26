@@ -3,10 +3,10 @@
 
 <c:url value="../../../assets/imagens" var="img" />
 
+<c:url value="/app/usuario/editar" var="urlEditarUsuario" />
 <c:url value="/sair" var="urlSair"/>
 
 <body>
-
     <div class="page-wrapper">
         <!-- HEADER MOBILE-->
         <header class="header-mobile d-block d-lg-none">
@@ -52,10 +52,12 @@
                             <a href="/gerenciadepjs/app/tecnologia/novo">
                                 Cadastro de Tecnologias</a>
                         </li>
-                        <li>
+                        <c:if test="${usuarioAutenticado.permissao eq 'ADMINISTRADOR'}">
+                        <li>                           
                             <a href="/gerenciadepjs/app/adm/usuario/novo">
                                 Cadastro de usuário</a>
                         </li>
+                        </c:if>
 
                     </ul>
                 </div>
@@ -100,10 +102,12 @@
                             <a href="/gerenciadepjs/app/tecnologia/novo">
                                 Cadastro de Tecnologias</a>
                         </li>
+                        <c:if test="${usuarioAutenticado.permissao eq 'ADMINISTRADOR'}">
                         <li>
                             <a href="/gerenciadepjs/app/adm/usuario/novo">
                                 Cadastro de Usuário</a>
                         </li>
+                        </c:if>
 					</ul>
                 </nav>
             </div>
@@ -116,7 +120,7 @@
             <header class="header-desktop">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
-                        <div class="header-wrap" style="display: flex; justify-content: flex-end">                           
+                        <div class="header-wrap" style="display: flex; justify-content: flex-end ">                           
                             <div class="header-button">
                                 <div class="noti-wrap">
                                     <div class="noti__item js-item-menu"></div>
@@ -142,9 +146,13 @@
                                                         <a href="#">${usuarioAutenticado.nome} ${usuarioAutenticado.sobrenome}</a>
                                                     </h5>
                                                     <span class="email">${usuarioAutenticado.email}</span>
+                                                    <span class="email">${usuarioAutenticado.permissao}</span>
                                                 </div>
                                             </div>
-
+											<div class="account-dropdown__footer">
+												<a href="${urlEditarUsuario}?id=${usuarioAutenticado.id}"> <i class="zmdi zmdi-edit"></i>Alterar dados
+												</a>
+											</div>
                                             <div class="account-dropdown__footer">
                                                 <a href="${urlSair}">
                                                 <i class="zmdi zmdi-power"></i>Sair</a>

@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:url value="/app/tecnologia/deletar" var="urlDeletar" />
 <c:url value="/app/tecnologia/novo" var="urlEditar" />
@@ -32,15 +33,22 @@
 						<table class="table table-borderless table-striped table-earning">
 							<thead>
 								<tr>
-									<th>Tecnologias</th>
+									<th>
+									<button type="button" name="quantidade" class="btn btn-primary pro" style="background-color:#dee2e6; color: black;">
+                                    	Tecnologias <span class="badge badge-light"></span>
+                                     </button>
+                                     </th>
 									<th></th>
 									<th></th>
 									<th class="text-right"></th>
 									<th class="text-right"></th>
-									<th class="text-right"></th>
+									<th class="text-right"><button type="button" name="quantidade" class="btn btn-primary pro" style="background-color:#dee2e6; color: black;">
+                                    <span class="badge badge-light">${fn:length(tecnologias)}</span>
+                                    </button></th>									
 								</tr>
 							</thead>
 							<tbody>
+							
 								<c:forEach items="${tecnologias}" var="tecnologia">
 									<tr>
 										<spring:htmlEscape defaultHtmlEscape="true">
@@ -101,7 +109,6 @@
 </div>
 </div>
 
-
 <!-- Jquery JS-->
 <script src="${vendor}/jquery-3.2.1.min.js"></script>
 <!-- Bootstrap JS-->
@@ -111,8 +118,7 @@
 <script src="${vendor}/slick/slick.min.js"></script>
 <script src="${vendor}/wow/wow.min.js"></script>
 <script src="${vendor}/animsition/animsition.min.js"></script>
-<script
-	src="${vendor}/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<script src="${vendor}/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
 <script src="${vendor}/counter-up/jquery.waypoints.min.js"></script>
 <script src="${vendor}/counter-up/jquery.counterup.min.js"></script>
 <script src="${vendor}/circle-progress/circle-progress.min.js"></script>

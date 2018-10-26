@@ -59,11 +59,9 @@
                                             <i class="fa fa-dot-circle-o"></i> Salvar           
                                         </button>
                                         
-                                        <c:if test="${tecnologia.id == null}">
                                         <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
-                                            <i class="fa fa-ban"></i> Limpar
+                                            <i class="fa fa-ban"></i> ${tecnologia.id != null ? 'Reset' : 'Limpar'}
                                         </button>
-                                        </c:if>
                                         
                                     </div>  
                                     </form:form>                                 

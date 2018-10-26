@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:url value="/app/projeto" var="urlListar" />
 <c:url value="/app/projeto/novo" var="urlNovoProjeto" />
@@ -30,9 +31,14 @@
 
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                        
+                        <button type="button" name="quantidade" class="btn btn-primary pro" style="background-color:#dee2e6; color: black;">
+                                    	Projetos <span class="badge badge-light">${fn:length(projetos)}</span>
+                                     </button>
+                        
                         <div class="row" >
                         
-							<c:forEach items="${projetos}" begin="1" end="9" var="projeto">
+							<c:forEach items="${projetos}" var="projeto">
                             <div id="lista" class="col-md-4">
                                 <div class="card card-projetos border border-primary">
                                     <div class="card-header">

@@ -25,7 +25,7 @@ public class TecnologiaController {
 	
 	@GetMapping("/tecnologia")
 	public String AbrirMenuTecnologias (Model model,
-			@RequestParam (name = "pesquisa", required = false)String nome) {
+			@RequestParam (name = "pesquisa", required = false)String nome){ 
 
 		if (nome != null) {
 			model.addAttribute("tecnologias", dao.pesquisarPorNome(nome));
@@ -62,8 +62,17 @@ public class TecnologiaController {
 			br.addError(new FieldError("tecnologia", "nome", "O nome já existe"));
 		}
 		
+		if(tecnologia.getNome().length() > 26){
+			br.addError(new FieldError("tecnologia", "nome", "O nome ultrapassou o limite de caractéres"));
+		}
+		
+		if(tecnologia.getNome() == null) {
+			br.addError(new FieldError("tecnologia", "nome", "O campo Nome está vazio"));
+		}
+		
 		if(br.hasErrors()) {
 			model.addAttribute("tecnologia", tecnologia);
+			System.out.println("SALVAR TECNOLOGIA: "+br.getAllErrors());
 			return "tecnologia/form";		
 		}
 		
