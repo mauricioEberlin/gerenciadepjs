@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.senai.sp.info.gerenciadepjs.dao.UsuarioDAO;
+import br.senai.sp.info.gerenciadepjs.jobs.EnviarSenhaJob;
 import br.senai.sp.info.gerenciadepjs.model.Permissao;
 import br.senai.sp.info.gerenciadepjs.model.Usuario;
 import br.senai.sp.info.gerenciadepjs.utils.EmailUtils;
@@ -32,6 +33,9 @@ public class UsuarioController {
 
 	@Autowired
 	private UsuarioDAO usuarioDAO;
+	
+	@Autowired
+	private EnviarSenhaJob job;
 
 	@GetMapping(value = { "/", "", "/index" })
 	public String AbrirLogin(Model model) {
@@ -57,19 +61,9 @@ public class UsuarioController {
 			System.out.println(brUsuario.getAllErrors());
 			return "forgotpass";
 		}
-
-		String senhaNova = "123456";
-
-		String titulo = "BQR - recuperação de senha";
-		String corpo = "Olá, " + usuario.getEmail() + "! Recupere sua senha. <br>" + "A nova senha é " + senhaNova;
-
-		try {
-			EmailUtils.enviarEmail(titulo, corpo, usuario.getEmail());
-		} catch (MessagingException e){
-			e.printStackTrace();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	
+		job.gerarEnviarSenha(usuario);
+		
 		return "redirect:/";
 	}
 
@@ -166,16 +160,19 @@ public class UsuarioController {
 		if (usuario.getId() == null) {
 			usuario.hashearSenha();
 			usuarioDAO.persistir(usuario);
-
-			/*
-			 * String titulo = "Bem-Vindo a BQR"; String corpo = "Olá, " + usuario.getNome()
-			 * + "! Seja bem-vindo a BRQ. ";
-			 * //+"Acesse o link: localhost:8080/jc/ para realizar o login.";
-			 * 
-			 * try { EmailUtils.enviarEmail(titulo, corpo, usuario.getEmail()); }catch
-			 * (MessagingException e) { e.printStackTrace(); }
-			 */
-
+			
+			 String titulo = "Bem-Vindo ao gerenciamento de projetos BQR!"; 
+			 String corpo = "Olá, "
+			 + usuario.getNome() + " " + usuario.getSobrenome()
+			 + "! Seja bem-vindo a BRQ. "
+			 + "Acesse o link: 192.168.4.244:8080/gerenciadepjs/ para realizar o login.";
+			  
+			 try { 
+				 EmailUtils.enviarEmail(titulo, corpo, usuario.getEmail()); }
+			 catch(MessagingException e){
+				 e.printStackTrace(); 
+			 }
+			 
 		} else {
 			Usuario usuarioBanco = usuarioDAO.buscar(usuario.getId());
 			usuarioBanco.setNome(usuario.getNome());

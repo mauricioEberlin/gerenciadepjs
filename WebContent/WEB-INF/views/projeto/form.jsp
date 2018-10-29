@@ -22,6 +22,13 @@
             <div class="main-content">
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                    
+                    <button>
+                    	<a href="/gerenciadepjs/app/tecnologia">
+                         	<img src="${img}/voltar.png" title="Voltar" style="color:#005fa3; margin-top:-20px; width: 45px;" alt="voltar para a página anterior" >
+						</a>                     
+                     </button>
+                    
                         <div class="row d-flex justify-content-center">
                             <div class="col-lg-12">
                                 <div class="card card-tecnologias">
