@@ -60,7 +60,7 @@
                                 
                                 <div class="form-group">
                                     <label>Senha</label>
-                                    <input onkeypress="capLock(event)" class="au-input au-input--full" type="password" name="senha" placeholder="">
+                                    <input class="au-input au-input--full" type="password" name="senha" placeholder="">
                                 	<div id="divMayus" style="visibility:hidden">Caps Lock Ligado.</div>
                                 </div>
                                 <div class="login-checkbox">                                  
@@ -74,7 +74,7 @@
 								</c:set>
                                 
                                 <c:if test="${not empty emailOuSenhaTemErro}">
-                                	<div class="alert alert-danger" role="alert" style="text-align:center; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb">
+                                	<div class="alert alert-danger" role="alert" style="font-size: 14px; text-align:center; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb">
                                    	 	<form:errors path="email"/>
                                		</div>
                                 </c:if>
@@ -87,17 +87,7 @@
             </div>
         </div>
     </div>
-    <script>
-    function capLock(e){
- kc = e.keyCode?e.keyCode:e.which;
- sk = e.shiftKey?e.shiftKey:((kc == 16)?true:false);
- if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
-  document.getElementById('divMayus').style.visibility = 'visible';
- else
-  document.getElementById('divMayus').style.visibility = 'hidden';
- </script>
-}
-    
+        
     <!-- Jquery JS-->
     <script src="${vendor}jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->

@@ -12,6 +12,18 @@
 <c:url value="/assets/vendor" var="vendor" />
 <c:url value="/assets/js" var="js" />
 
+<!-- Coloque aqui o valor de quantos projetos devem ser mostrados por página -->
+<c:set var="pjsPPag" value="9"/>
+
+<c:if test="${pagina == null}">
+	<c:set var="pagina" value="1"/>
+</c:if>
+
+<c:set var="priProjeto" value="${(pjsPPag*pagina)-pjsPPag}"/>
+<c:set var="ultProjeto" value="${(pjsPPag*pagina)-1}"/>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,11 +37,15 @@
             <div class="main-content">
                 <h2 class="title-1" style="text-align:center;">Projetos</h2>
                 <br>
-                <br>
-
-
+                
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
+                    
+             <c:if test="${not empty sucesso}">
+				<div class="alert alert-primary" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
+            		Projeto cadastrada com sucesso!                            
+            	</div>
+            </c:if>	
                         
                         <button type="button" name="quantidade" class="btn btn-primary pro" style="background-color:#dee2e6; color: black;">
                                     	Projetos <span class="badge badge-light">${fn:length(projetos)}</span>
@@ -37,7 +53,7 @@
                         
                         <div class="row" >
                         
-							<c:forEach items="${projetos}" var="projeto">
+							<c:forEach items="${projetos}" var="projeto" begin="${priProjeto}" end="${ultProjeto}"><!--   -->
                             <div id="lista" class="col-md-4">
                                 <div class="card card-projetos border border-primary">
                                     <div class="card-header">
@@ -56,22 +72,50 @@
                                 <div class="copyright">
                                     <nav aria-label="Page navigation example">
                                         <ul class="pagination justify-content-center" style="color: #005fa3;">
-                                            <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Previous">
+                                            <c:if test="${pagina > 1}">
+                                            <li class="page-item">                                              
+                                                <a class="page-link" href="?pagina=${pagina-1}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="sr-only">Previous</span>
-                                                </a>
+                                                </a>                                                
                                             </li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-
+                                            </c:if>
+											<c:if test="${pagina-4 >= 1}">
+											<li class="page-item"><a class="page-link" href="?pagina=${pagina-4}">${pagina-4}</a></li>
+											</c:if>                                           
+                                           	<c:if test="${pagina-3 >= 1}">
+                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina-3}">${pagina-3}</a></li>
+                                            </c:if>
+                                            <c:if test="${pagina-2 >= 1}">
+                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina-2}">${pagina-2}</a></li>
+                                            </c:if>
+                                            <c:if test="${pagina-1 >= 1}">
+                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina-1}">${pagina-1}</a></li>
+                                           	</c:if>
+                                                                                    
+                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina}">${pagina}</a></li>
+                                            
+                                            <c:if test="${pagina*9 < fn:length(projetos)}">
+                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina+1}">${pagina+1}</a></li>
+                                            </c:if>
+                                            <c:if test="${(pagina+1)*9 < fn:length(projetos)}">
+                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina+2}">${pagina+2}</a></li>
+											</c:if>
+											<c:if test="${(pagina+2)*9 < fn:length(projetos)}">
+                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina+3}">${pagina+3}</a></li>
+                                            </c:if>
+                                            <c:if test="${(pagina+3)*9 < fn:length(projetos)}">
+                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina+4}">${pagina+4}</a></li>
+											</c:if>
+                                            
+                                            <c:if test="${pagina*9 < fn:length(projetos)}">
                                             <li class="page-item">
-                                                <a class="page-link" href="#" aria-label="Next">
+                                                <a class="page-link" href="?pagina=${pagina+1}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="sr-only">Next</span>
                                                 </a>
                                             </li>
+                                            </c:if>
                                         </ul>
                                     </nav>
                                 </div>
@@ -170,18 +214,5 @@
     <script src="${vendor}/select2/select2.min.js"></script>
     <!-- Main JS-->
     <script src="${js}/main.js"></script>
-    
-    	<script>
-                var filtro = document.getElementById('filtro-nome');
-				var tabela = document.getElementById('lista');
-				filtro.onkeyup = function() {
-				    var nomeFiltro = filtro.value;
-				    for (var i = 1; i < tabela.rows.length; i++) {
-				        var conteudoCelula = tabela.rows[i].cells[0].innerText;
-				        var corresponde = conteudoCelula.toLowerCase().indexOf(nomeFiltro) >= 0;
-				        tabela.rows[i].style.display = corresponde ? '' : 'none';         
-    }
-};                       
-     	</script>  
     </body>
 </html>

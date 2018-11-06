@@ -26,6 +26,11 @@
 <div class="main-content">
 	<div class="section__content section__content--p30">
 		<div class="container-fluid">
+			<c:if test="${not empty sucesso}">
+				<div class="alert alert-primary" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
+            		Tecnologia cadastrada com sucesso!                            
+            	</div>
+            </c:if>				
 			<div class="row "
 				style="max-width: 800px; display: block; margin: auto;">
 				<div class="col-lg-12">
@@ -48,7 +53,6 @@
 								</tr>
 							</thead>
 							<tbody>
-							
 								<c:forEach items="${tecnologias}" var="tecnologia">
 									<tr>
 										<spring:htmlEscape defaultHtmlEscape="true">

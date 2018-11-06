@@ -65,10 +65,10 @@ public class UsuarioController {
 	@PostMapping({ "/usuario/autenticar" })
 	public String autenticar(@ModelAttribute("usuario") Usuario usuario, BindingResult br, HttpSession session) {
 		usuario.hashearSenha();
-
+		
 		Usuario usuarioBuscado = usuarioDAO.buscarPorEmailESenha(usuario.getEmail(), usuario.getSenha());
 		if (usuarioBuscado == null) {
-			br.addError(new FieldError("usuario", "email", "E-mail ou senha incorretos."));
+			br.addError(new FieldError("usuario", "email", "E-mail ou senha incorretos. Verifique o Caps Lock."));			
 		}
 		
 		if (br.hasFieldErrors("email") || br.hasFieldErrors("senha")) {

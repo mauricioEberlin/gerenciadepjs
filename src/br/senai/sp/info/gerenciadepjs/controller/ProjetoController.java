@@ -34,7 +34,9 @@ public class ProjetoController {
 	@GetMapping("/projeto")
 	public String AbrirTelaProjetos (@RequestParam(name = "idStatus", required = false)Integer idStatus, 
 									 @RequestParam(name = "idTec", required = false)Long id, 
-									 @RequestParam(name = "pesquisa", required = false)String nome, 
+									 @RequestParam(name = "pesquisa", required = false)String nome,
+									 @RequestParam(name = "sucesso", required = false)String sucesso,
+									 @RequestParam(name = "pagina", required = false)Integer pagina,
 									 Model model) {
 		
 		if(id == null && nome == null) {
@@ -52,6 +54,15 @@ public class ProjetoController {
 		if(idStatus != null) {
 			model.addAttribute("projetos", dao.buscarPorStatus(idStatus));
 		}
+		
+		if (sucesso != null) {
+			model.addAttribute("sucesso", "true");
+		}
+		
+		if (pagina != null) {
+			model.addAttribute("pagina", pagina);
+		}
+		
 		return "projeto/menu";
 	}
 	
@@ -106,7 +117,9 @@ public class ProjetoController {
 			Projeto projetoBanco = dao.buscar(projeto.getId());	
 			BeanUtils.copyProperties(projeto, projetoBanco, "id");
 			dao.alterar(projetoBanco);
-		}		
+		}	
+		
+		model.addAttribute("sucesso", "true");
 		return "redirect:/app/projeto";
 	}
 	

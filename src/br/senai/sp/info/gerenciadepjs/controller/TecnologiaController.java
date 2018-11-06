@@ -25,7 +25,8 @@ public class TecnologiaController {
 	
 	@GetMapping("/tecnologia")
 	public String AbrirMenuTecnologias (Model model,
-			@RequestParam (name = "pesquisa", required = false)String nome){ 
+			@RequestParam (name = "pesquisa", required = false)String nome,
+			@RequestParam (name = "sucesso", required = false)String sucesso){ 
 
 		if (nome != null) {
 			model.addAttribute("tecnologias", dao.pesquisarPorNome(nome));
@@ -33,6 +34,10 @@ public class TecnologiaController {
 			model.addAttribute("tecnologias", dao.buscarTodos());	
 		}
 		
+		if (sucesso != null) {
+			model.addAttribute("sucesso", "true");
+		}
+				
 		return "tecnologia/menu";
 		
 	}
@@ -82,7 +87,9 @@ public class TecnologiaController {
 			Tecnologia tecnologiaBanco = dao.buscar(tecnologia.getId());
 			BeanUtils.copyProperties(tecnologia, tecnologiaBanco, "id");
 			dao.alterar(tecnologiaBanco);
-		}		
+		}	
+		
+		model.addAttribute("sucesso", "true");
 		return "redirect:/app/tecnologia";	
 	}
 }

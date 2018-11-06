@@ -21,7 +21,7 @@ public class JwtUtils {
 		
 		Calendar  calendarExpiracao = Calendar.getInstance();
 		calendarExpiracao.add(Calendar.SECOND, 60);
-		Date dataExpiracao = calendarExpiracao.getTime();
+		//Date dataExpiracao = calendarExpiracao.getTime();
 		
 		return JWT.create().withIssuer("BRQ - Gerencia de projetos")
 						    .withIssuedAt(new Date())
