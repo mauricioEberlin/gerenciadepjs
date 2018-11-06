@@ -38,11 +38,13 @@
 											<form:hidden path="id" />
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class="form-control-label">Nome</label>
+                                                    <label for="text-input" class="form-control-label">Nome<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="nome" type="text" id="text-input" name="text-input" placeholder="Nome"
                                                         class="form-control" htmlEscape="true"/>
+                                                        
+                                                        <span class="obrigatorio"><form:errors path="nome"/></span>
 
                                                 </div>
                                             </div>
@@ -54,20 +56,22 @@
                                                 <div class="col-12 col-md-9">
                                                     <form:textarea path="descricao" name="textarea-input" id="textarea-input" rows="9"
                                                         placeholder="Descrição..." class="form-control"/>
+                                                        <span class="obrigatorio"><form:errors path="descricao"/></span>
                                                 </div>
                                             </div>
                                        
                                     </div>
                                     <div class="card-footer">
+                                    
+                                    <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
+                                            <i class="fa fa-ban"></i> ${tecnologia.id != null ? 'Reiniciar' : 'Limpar'}
+                                        </button>
+                                    
                                        <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm" data-toggle="modal"
                                         data-target="#staticModal">
                                             <i class="fa fa-dot-circle-o"></i> Salvar           
                                         </button>
-                                        
-                                        <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
-                                            <i class="fa fa-ban"></i> ${tecnologia.id != null ? 'Reset' : 'Limpar'}
-                                        </button>
-                                        
+          
                                     </div>  
                                     </form:form>                                 
                                 </div>

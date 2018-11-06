@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -26,23 +26,19 @@ public class Projeto {
 	private Tecnologia tecnologia;
 	
 	@ManyToOne
-	@NotNull
 	@JoinColumn(nullable = false, name = "status_id")
 	private Status status;
 	
 	@Column(length = 40, nullable = false, unique = false)
-	@NotNull
-	@Size(min = 1, max = 40)
+	@NotEmpty(message = "Este campo é obrigatório!")
 	private String nome;
 	
 	@Column(length = 64, nullable = false, unique = false)
-	@NotNull
-	@Size(min = 1, max = 64)
+	@NotEmpty(message = "Este campo é obrigatório!")
 	private String responsavelBRQ;
 	
 	@Column(length = 64, nullable = false, unique = false)
-	@NotNull
-	@Size(min = 1, max = 64)
+	@NotEmpty(message = "Este campo é obrigatório!")
 	private String responsavelCliente;
 	
 	@Column(nullable = true)
@@ -57,8 +53,8 @@ public class Projeto {
 	private Date dataFim;
 	
 	@Lob
-	@Column(length = 500, nullable = true)
-	@Size(max = 500)
+	@Column(nullable = true)
+	@Size(max = 500, message = "O campo não pode ultrapassar o limite de 500 caractéres.")
 	private String descricao;
 	
 	//G&S

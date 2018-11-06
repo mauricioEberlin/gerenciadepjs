@@ -3,6 +3,7 @@
 
 <c:url value="../assets/css" var="css" />
 <c:url value="../assets/vendor" var="vendor" />
+<c:url value="../assets/imagens" var="imgs" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no">
@@ -14,6 +15,7 @@
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
 
+	<link rel="icon" href="${imgs}/favicon.png" type="image/png">
 	<!-- Fontfaces CSS-->
     <link href="${css}/font-face.css" rel="stylesheet" media="all">
     <link href="${vendor}/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">

@@ -25,7 +25,6 @@ public class CadastrarAdmJob implements ApplicationListener<ContextRefreshedEven
 		admin.setSenha("admin");
 		admin.setSobrenome("do Sistema");
 		admin.setPermissao(Permissao.ADMINISTRADOR);
-		admin.setCargo("Administrador mestre");
 		admin.setTelefone("1100000000");
 		admin.hashearSenha();
 		

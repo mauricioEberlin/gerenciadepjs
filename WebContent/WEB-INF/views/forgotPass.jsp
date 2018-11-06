@@ -54,20 +54,29 @@
                             <form:form modelAttribute="usuario" action="${enviarSenha}" method="post">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <form:input path="email" class="au-input au-input--full" type="email" placeholder=""/>
+                                    <form:input path="email" class="au-input au-input--full" type="email" placeholder=""/>                                                                    
+                                    
                                     <small>Digite o seu email para recuperar a sua senha</small>
                                 </div>
+                                
+                                <c:set var="emailTemErro">
+									<form:errors path="email"/>
+								</c:set>
+                                
+                                <c:if test="${not empty emailTemErro}">
+                                	<div class="alert alert-danger" role="alert" style="text-align:center; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb">
+                                   	 	<form:errors path="email"/>
+                               		</div>
+                                </c:if>
+                                
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" style="background-color:#009cde; "
                                     type="submit">Enviar</button>                                
                                 
                                 <!--
                                 <div class="alert alert-primary" role="alert" style="text-align:center; background-color: #dff0d8; color: #3c763d; border-color: #d6e9c6;">
                                     Seu e-mail foi enviado com sucesso!
-                                </div>
-                                
-                                <div class="alert alert-danger" role="alert" style="text-align:center; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb">
-                                    E-mail inválido!
-                                </div> -->
+                                </div>                               
+                                 -->
                                                              
                             </form:form>
                         </div>

@@ -12,10 +12,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.senai.sp.info.gerenciadepjs.dao.UsuarioDAO;
@@ -52,38 +49,35 @@ public class UsuarioController {
 	@PostMapping(value = { "/usuario/enviarsenha" })
 	public String EnviarSenhaParaEmail(@ModelAttribute("usuario") Usuario usuario, BindingResult brUsuario) {
 
-		if (usuarioDAO.buscarPorEmail(usuario.getEmail()) == null) {
+		if (usuarioDAO.buscarPorEmail(usuario.getEmail()) == null || usuario.getEmail().equals("admin@email.com")) {
 			brUsuario.addError(
-					new FieldError(usuario.getEmail(), usuario.getEmail(), "Este email nao existe em nosso sistema"));
+					new FieldError("usuario", "email", "Este email não existe em nosso sistema"));
 		}
-
 		if (brUsuario.hasErrors()) {
 			System.out.println(brUsuario.getAllErrors());
-			return "forgotpass";
+			return "forgotPass";
+		}else {	
+			job.gerarEnviarSenha(usuario);		
+			return "redirect:/";
 		}
-	
-		job.gerarEnviarSenha(usuario);
-		
-		return "redirect:/";
 	}
 
 	@PostMapping({ "/usuario/autenticar" })
-	public String autenticar(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult br, HttpSession session) {
+	public String autenticar(@ModelAttribute("usuario") Usuario usuario, BindingResult br, HttpSession session) {
 		usuario.hashearSenha();
 
 		Usuario usuarioBuscado = usuarioDAO.buscarPorEmailESenha(usuario.getEmail(), usuario.getSenha());
 		if (usuarioBuscado == null) {
-			br.addError(new FieldError("usuario", "email", "E-mail ou senha incorretos"));
-			return "redirect:/";
+			br.addError(new FieldError("usuario", "email", "E-mail ou senha incorretos."));
 		}
-
+		
 		if (br.hasFieldErrors("email") || br.hasFieldErrors("senha")) {
-			System.out.println("ERRO DE AUTENTICAÇÃO: " + br);
+			System.out.println("ERRO DE AUTENTICAÇÃO: " + br.getAllErrors());
 			return "index";
+		}else {
+			session.setAttribute("usuarioAutenticado", usuarioBuscado);
+			return "redirect:/app/tecnologia";
 		}
-
-		session.setAttribute("usuarioAutenticado", usuarioBuscado);
-		return "redirect:/app/tecnologia";
 	}
 
 	@GetMapping("/app/usuario/editar")
@@ -106,7 +100,7 @@ public class UsuarioController {
 		usuario.hashearSenha();
 					
 		if (!usuario.getSenha().equals(usuarioBanco.getSenha())) {
-			brUsuario.addError(new FieldError("usuario", "senha", "A senha nao coincide com a senha antiga"));
+			brUsuario.addError(new FieldError("usuario", "senha", "A senha não coincide com a senha antiga."));
 		}
 		
 		if (brUsuario.hasErrors()) {
@@ -115,13 +109,12 @@ public class UsuarioController {
 		}		
 		
 		if(senhaNova.length() >= 1) {
-		usuarioBanco.setSenha(senhaNova);
-		usuarioBanco.hashearSenha();
+			usuarioBanco.setSenha(senhaNova);
+			usuarioBanco.hashearSenha();
 		}
 		
 		usuarioBanco.setNome(usuario.getNome());
 		usuarioBanco.setSobrenome(usuario.getSobrenome());
-		usuarioBanco.setCargo(usuario.getCargo());
 		usuarioBanco.setTelefone(usuario.getTelefone());
 					
 		usuarioDAO.alterar(usuarioBanco);
@@ -158,15 +151,16 @@ public class UsuarioController {
 		}
 
 		if (usuario.getId() == null) {
-			usuario.hashearSenha();
-			usuarioDAO.persistir(usuario);
-			
+						
 			 String titulo = "Bem-Vindo ao gerenciamento de projetos BQR!"; 
 			 String corpo = "Olá, "
 			 + usuario.getNome() + " " + usuario.getSobrenome()
 			 + "! Seja bem-vindo a BRQ. "
-			 + "Acesse o link: 192.168.4.244:8080/gerenciadepjs/ para realizar o login.";
+			 + "Acesse o link: 192.168.4.244:8080/gerenciadepjs/ para realizar o login. Sua senha é: " + usuario.getSenha();
 			  
+			 usuario.hashearSenha();
+			 usuarioDAO.persistir(usuario);
+			 
 			 try { 
 				 EmailUtils.enviarEmail(titulo, corpo, usuario.getEmail()); }
 			 catch(MessagingException e){

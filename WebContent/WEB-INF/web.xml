@@ -49,6 +49,11 @@
 		<error-code>401</error-code>
 		<location>/erros/401</location>
 	</error-page>
+	
+	<error-page>
+		<error-code>405</error-code>
+		<location>/erros/405</location>
+	</error-page>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>

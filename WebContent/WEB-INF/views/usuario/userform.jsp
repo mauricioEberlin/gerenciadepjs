@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
@@ -12,7 +12,7 @@
 <html>
 <head>
 <c:import url="../templates/head2.jsp"/>
-<title>Cadastro de Usuário</title>
+<title>Alterando dados</title>
 </head>
 <c:import url="../templates/header2.jsp"/>
             
@@ -38,47 +38,42 @@
                                   	<form:hidden path="id" />
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Nome</label>
+                                                    <label class=" form-control-label">Nome<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="nome" type="text" id="text-input" name="text-input" class="form-control"/>
+													<span class="obrigatorio"><form:errors path="nome"/></span>                                                 
                                                     <small class="form-text text-muted">Por favor insira seu nome</small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Sobrenome</label>
+                                                    <label class=" form-control-label">Sobrenome<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="sobrenome" type="text" id="text-input" name="text-input" class="form-control"/>
-                                                    <small class="form-text text-muted">Por favor insira seu sobrenome</small>
+                                                    <span class="obrigatorio"><form:errors path="sobrenome"/></span>          
+                                                    <small class="form-text text-muted">Por favor insira seu sobrenome </small>
                                                 </div>
-                                            </div>
+                                            </div>                                                                                  
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Cargo</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <form:input path="cargo" type="text" id="text-input" name="text-input" class="form-control"/>
-                                                    <small class="form-text text-muted">Por favor insira seu cargo</small>
-                                                </div>
-                                            </div>                                            
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="tel-input" class=" form-control-label">Telefone</label>
+                                                    <label for="tel-input" class=" form-control-label">Telefone<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="telefone" type="tel" id="tel-input" name="tel-input" class="form-control"/>
-                                                    <small class="form-text text-muted">Insira o seu telefone</small>
+                                                    <span class="obrigatorio"><form:errors path="telefone"/></span>          
+                                                    <small class="form-text text-muted">Insira o seu telefone </small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Senha antiga</label>
+                                                    <label class=" form-control-label">Senha antiga<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="password" id="password-input" name="senha"
                                                         class="form-control"/>
+                                                        <span class="obrigatorio"><form:errors path="senha"/></span>    
                                                     <small class="form-text text-muted">Insira sua senha antiga</small>
                                                 </div>
                                             </div>
@@ -88,17 +83,17 @@
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="password" id="password-input" name="senhaNova"
-                                                        class="form-control"/>
+                                                        class="form-control"/>													                                                         
                                                     <small class="form-text text-muted">Insira a sua nova senha</small>
                                                 </div>
                                             </div>                                                                                   
                                     </div>
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> Salvar
-                                        </button>
+                                    <div class="card-footer">                                     
                                          <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
-                                            <i class="fa fa-ban"></i> ${projeto.id != null ? 'Reset' : 'Limpar'}
+                                            <i class="fa fa-ban"></i> ${usuario.id != null ? 'Reiniciar' : 'Limpar'}
+                                        </button>
+                                         <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Salvar
                                         </button>
                                     </div>
                                 </div>                              

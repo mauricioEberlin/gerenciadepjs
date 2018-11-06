@@ -3,9 +3,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <c:url value="/" var="raiz" />
-<c:url value="/usuario/autenticar" var="autenticarUsuario" />
-<c:url value="/assets/imagens" var="imagensRaiz" />
+<c:url value="/assets/imagens/" var="img" />
+<c:url value="/assets/vendor/" var="vendor" />
+<c:url value="/assets/css/" var="css" />
+<c:url value="/assets/js/" var="js" />
+
 <c:url value="/esqueciasenha" var="esqueciAS" />
+<c:url value="/usuario/autenticar" var="autenticarUsuario" />
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -19,23 +23,22 @@
     <!-- Title Page-->
     <title>Login</title>
     <!-- Fontfaces CSS-->
-    <link href="assets/css/font-face.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="${css}font-face.css" rel="stylesheet" media="all">
+    <link href="${vendor}font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="${vendor}font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="${vendor}mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
     <!-- Bootstrap CSS-->
-    <link href="assets/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <link href="${vendor}bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <!-- Vendor CSS-->
-    <link href="assets/vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/wow/animate.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/slick/slick.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/select2/select2.min.css" rel="stylesheet" media="all">
-    <link href="assets/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
+    <link href="${vendor}animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="${vendor}bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="${vendor}wow/animate.css" rel="stylesheet" media="all">
+    <link href="${vendor}css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="${vendor}slick/slick.css" rel="stylesheet" media="all">
+    <link href="${vendor}select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="${vendor}perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
     <!-- Main CSS-->
-    <link href="assets/css/theme.css" rel="stylesheet" media="all">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="${css}theme.css" rel="stylesheet" media="all">
 </head>
 <body class="animsition">
     <div class="page-wrapper">
@@ -45,29 +48,38 @@
                     <div class="login-content">
                         <div class="login-logo">
                             <a href="#">
-                                <img src="${imagensRaiz}/logo-azul.png" style="width:300px;" alt="logo da BRQ">
+                                <img src="${img}/logo-azul.png" style="width:300px;" alt="logo da BRQ">
                             </a>
                         </div>
                         <div class="login-form">
-                            <form:form action="${autenticarUsuario}" method="post">
+                            <form:form modelAttribute="usuario" action="${autenticarUsuario}" method="post">
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="">
+                                    <input class="au-input au-input--full" type="email" name="email" placeholder="">                                   
                                 </div>
+                                
                                 <div class="form-group">
                                     <label>Senha</label>
-                                    <input class="au-input au-input--full" type="password" name="senha" placeholder="">
+                                    <input onkeypress="capLock(event)" class="au-input au-input--full" type="password" name="senha" placeholder="">
+                                	<div id="divMayus" style="visibility:hidden">Caps Lock Ligado.</div>
                                 </div>
-                                <div class="login-checkbox">
-                                  
+                                <div class="login-checkbox">                                  
                                     <label>
-                                        <a href="${esqueciAS}" style="color:#005fa3;">Esqueceu a senha? </a>
-                                    </label>
+                                        <a href="${esqueciAS}" style="color:#005fa3;">Esqueceu a senha?</a>
+                                    </label>                                                                      
                                 </div>
+                                
+                                <c:set var="emailOuSenhaTemErro">
+									<form:errors path="email"/>
+								</c:set>
+                                
+                                <c:if test="${not empty emailOuSenhaTemErro}">
+                                	<div class="alert alert-danger" role="alert" style="text-align:center; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb">
+                                   	 	<form:errors path="email"/>
+                               		</div>
+                                </c:if>
+                                
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit" style="background-color: #009cde;">Login</button>
-                                <div class="social-login-content">
-                                   
-                                </div>
                             </form:form>                           
                         </div>                    
                     </div>
@@ -75,30 +87,35 @@
             </div>
         </div>
     </div>
+    <script>
+    function capLock(e){
+ kc = e.keyCode?e.keyCode:e.which;
+ sk = e.shiftKey?e.shiftKey:((kc == 16)?true:false);
+ if(((kc >= 65 && kc <= 90) && !sk)||((kc >= 97 && kc <= 122) && sk))
+  document.getElementById('divMayus').style.visibility = 'visible';
+ else
+  document.getElementById('divMayus').style.visibility = 'hidden';
+ </script>
+}
     
     <!-- Jquery JS-->
-    <script src="assets/vendor/jquery-3.2.1.min.js"></script>
+    <script src="${vendor}jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
-    <script src="assets/vendor/bootstrap-4.1/popper.min.js"></script>
-    <script src="assets/vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <script src="${vendor}bootstrap-4.1/popper.min.js"></script>
+    <script src="${vendor}bootstrap-4.1/bootstrap.min.js"></script>
     <!-- Vendor JS       -->
-    <script src="assets/vendor/slick/slick.min.js">
-    </script>
-    <script src="assets/vendor/wow/wow.min.js"></script>
-    <script src="assets/vendor/animsition/animsition.min.js"></script>
-    <script src="assets/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>
-    <script src="assets/vendor/counter-up/jquery.waypoints.min.js"></script>
-    <script src="assets/vendor/counter-up/jquery.counterup.min.js">
-    </script>
-    <script src="assets/vendor/circle-progress/circle-progress.min.js"></script>
-    <script src="assets/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="assets/vendor/chartjs/Chart.bundle.min.js"></script>
-    <script src="assets/vendor/select2/select2.min.js">
-    </script>
-
+    <script src="${vendor}slick/slick.min.js"></script>
+    <script src="${vendor}wow/wow.min.js"></script>
+    <script src="${vendor}animsition/animsition.min.js"></script>
+    <script src="${vendor}bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <script src="${vendor}counter-up/jquery.waypoints.min.js"></script>
+    <script src="${vendor}counter-up/jquery.counterup.min.js"></script>
+    <script src="${vendor}circle-progress/circle-progress.min.js"></script>
+    <script src="${vendor}perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="${vendor}chartjs/Chart.bundle.min.js"></script>
+    <script src="${vendor}select2/select2.min.js"></script>
     <!-- Main JS-->
-    <script src="assets/js/main.js"></script>
+    <script src="${js}main.js"></script>
     
 </body>
 </html>

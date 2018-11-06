@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -18,8 +17,6 @@ import br.senai.sp.info.gerenciadepjs.dao.ProjetoDAO;
 import br.senai.sp.info.gerenciadepjs.dao.StatusDAO;
 import br.senai.sp.info.gerenciadepjs.dao.TecnologiaDAO;
 import br.senai.sp.info.gerenciadepjs.model.Projeto;
-import br.senai.sp.info.gerenciadepjs.model.Usuario;
-
 
 @Controller
 @RequestMapping("/app")
@@ -98,7 +95,9 @@ public class ProjetoController {
 		if (brprojeto.hasErrors()) {
 			System.out.print("ERROS CADASTRAR PROJETO: ");
 			System.out.println(brprojeto.getAllErrors());
-			return "projeto/novo";
+			model.addAttribute("status", daoStatus.buscarTodos());
+			model.addAttribute("tecnologias", daoTec.buscarTodos());
+			return "projeto/form";
 		}
 		
 		if (dao.buscar(projeto.getId()) == null) {

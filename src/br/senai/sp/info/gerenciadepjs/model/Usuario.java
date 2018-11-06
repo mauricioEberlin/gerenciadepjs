@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,10 +17,11 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.DigestUtils;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Usuario")
-public class Usuario implements Authentication{
-	
+public class Usuario implements Authentication{	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,34 +30,24 @@ public class Usuario implements Authentication{
 	private Permissao permissao = Permissao.COORDENADOR;
 	
 	@Column(length = 30, nullable = false)
-	@NotNull
-	@Size(min = 1, max = 30)
+	@NotEmpty(message = "Este campo é obrigatório!")
 	private String nome;
 	
 	@Column(length = 50, nullable = false)
-	@NotNull
-	@Size(min = 1, max = 50)
+	@NotEmpty(message = "Este campo é obrigatório!")
 	private String sobrenome;
-	
-	@Column(length = 50, nullable = false)
-	@NotNull
-	@Size(min = 1, max = 50)
-	private String cargo;
-	
+		
 	@Column(length = 120, nullable = false, unique = true)
-	@NotNull
+	@NotEmpty(message = "Este campo é obrigatório!")
 	@Email
-	@Size(max = 120)
 	private String email;
 	
 	@Column(length = 11, nullable = false, unique = true)
-	@NotNull
-	@Size(min = 8, max = 11)
+	@Size(min = 8, max = 11, message = "Telefone deve conter entre 8 a 11 caractéres.")
 	private String telefone;
 	
 	@Column(length = 64, nullable = false)
-	@NotNull
-	@Size(min = 1, max = 64)
+	@NotEmpty(message = "Este campo é obrigatório!")
 	private String senha;
 	
 	//Getters & Setters
@@ -90,14 +82,6 @@ public class Usuario implements Authentication{
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
-	}
-
-	public String getCargo() {
-		return cargo;
-	}
-
-	public void setCargo(String cargo) {
-		this.cargo = cargo;
 	}
 	
 	public String getEmail() {

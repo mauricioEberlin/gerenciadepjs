@@ -40,5 +40,11 @@ public class StatusJPA implements StatusDAO{
 		
 		return query.list();
 	}
+
+	@Override
+	public void persistir(Status obj) {
+		sessionFac.getCurrentSession().persist(obj);
+		
+	}
 	
 }

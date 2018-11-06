@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -19,15 +19,12 @@ public class Tecnologia {
 	private Long id;
 	
 	@Column(length = 26, nullable = false, unique = true)
-	@NotNull
-	@Size(min = 1, max = 26)
+	@NotEmpty(message = "Este campo é obrigatório!")
 	private String nome;
 	
 	@Lob
-	@Column(length = 500, nullable = true)
-	@Size(max = 500)
-	//@NotNull(message = "este campo é obrigatorio!")
-	
+	@Column(nullable = true)	
+	@Size(max = 500, message = "O campo não pode ultrapassar o limite de 500 caractéres.")
 	private String descricao;
 
 	//G&S

@@ -24,8 +24,8 @@
 		<div class="container">
 			<div class="row justify-content-center">
 				<div class="col-md-12 text-center">
-					<span class="display-1 d-block" style="color: white;">401</span>
-					<div class="mb-4 lead" style="color: white">Acesso negado! Faça o login.</div>
+					<span class="display-1 d-block" style="color: white;">405</span>
+					<div class="mb-4 lead" style="color: white">Método não permitido.</div>
 					<a href="/gerenciadepjs/index" class="btn btn-link" style="color: white;">Tela de login</a>
 				</div>
 			</div>

@@ -1,5 +1,31 @@
-.modal fade{
-	setTimeout(function() { $('modal fade').modal('hide'); }, 50000);
+/* Gambiarra do ponto */
+.copyright{
+  padding: 50px;
+}
+/*obrigat�rio*/
+
+.obrigatorio{
+	color: red;
+	font-size: 14px;
+}
+
+/* Tela de Erro */
+.TeladeErro {
+  background-color: #005fa3;
+}
+.page-wrap {
+  min-height: 100vh;
+}
+
+/* Cadastro de Usuário */
+.btn-secondary {
+  background-color:#005fa3;
+  border-color: #005fa3;
+
+}
+.voltar{
+  display: flex;
+  transform:translateX(10%);
 }
 /* Tela de Tecnologias */
 .table-earning thead th {
@@ -13,6 +39,21 @@
   color: #005fa3;
   cursor: pointer;
 }
+.au-btn--submit{
+  border: 0;
+}
+@media(max-width: 991px){
+  .form-header{
+    display: none;
+  }
+}
+@media(max-width: 990px){
+  .t{
+    display: none;
+  }
+}
+
+
 
 /* Tela de Cadastro de tecnologias */
 .card-tecnologias {
@@ -44,6 +85,8 @@
 
 } 
  
+
+
 /* Tela de projetos */
 .menu-sidebar__content{
   background-color: #005fa3;
@@ -96,30 +139,51 @@
   border-color: #005fa3;
 }
 .btn-warning:hover{
-  background-color: blue;
+  background-color: #009cde;
   border-color: #005fa3;
 }
 .btn-success:hover{
-  background-color: blue;
+  background-color: #009cde;
   border-color: #005fa3;
+  color: black;
 }
  .btn-success{
   background-color: #005fa3;
   color: white;
   border-color: #005fa3;
 }
+ .pro{
+  background-color: #005fa3;
+  color: white;
+ }
+ .pro:hover{
+   background-color: #005fa3;
+   color: white;
+ }
+
+
 
 /* Tela de Recuperação de senha */
+
+
+
+
+
 
 /* Tela de login 2*/
 .login-wrap {
   max-width: 540px;
+ 
   margin: 0 auto; 
 }
 
 .login-content {
+ 
   padding: 39px 30px 20px;
+ 
 }
+
+
 
 /* Header mobile */
 .header-mobile{
@@ -140,13 +204,9 @@
 .header-mobile .hamburger{
   background-color: #005fa3;
 }
-@media (max-width:991px){
-	
-	.form-header{
-	display:none;
-}
-	
-}
+
+
+
 
 
 /* Tela de login */
@@ -212,6 +272,9 @@
     border: #009cde;
     margin-left: 1%;
 }
+
+
+
 
 /* Bootstrap tela de login*/
  .form-signin {

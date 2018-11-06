@@ -42,7 +42,7 @@
 										<c:if test="${projeto.id == null}">
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">ID</label>
+                                                    <label class=" form-control-label">ID<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="id" type="number" id="number-input" name="text-input" class="form-control"/>
@@ -54,11 +54,12 @@
                                         
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Nome</label>
+                                                    <label class=" form-control-label">Nome<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="nome" type="text" id="text-input" name="text-input" class="form-control" />
-                                                    <small class="form-text text-muted">Por favor insira seu nome</small>
+                                                    <span class="obrigatorio"><form:errors path="nome"/></span>
+                                                    <small class="form-text text-muted">Por favor insira o nome do projeto</small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
@@ -67,6 +68,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="dataInicio" type="date" id="date-input" name="date-input" class="form-control"/>
+                                                    <span class="obrigatorio"><form:errors path="dataInicio"/></span>
                                                     <small class="form-text text-muted">Coloque a data de início do seu projeto</small>
                                                 </div>
                                             </div>
@@ -76,6 +78,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="dataFim" type="date" id="date-input" name="date-input" class="form-control"/>
+                                                    <span class="obrigatorio"><form:errors path="dataFim"/></span>
                                                     <small class="form-text text-muted">Coloque a data de fim do seu projeto</small>
                                                 </div>
                                             </div>
@@ -85,33 +88,36 @@
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="horas" type="number" id="number-input" name="number-input" class="form-control"/>
+                                                    <span class="obrigatorio"><form:errors path="horas"/></span>
                                                     <small class="form-text text-muted">Coloque as horas necessarias
                                                         para ser
-                                                        realizado</small>
+                                                        realizado </small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Responsável BRQ</label>
+                                                    <label class=" form-control-label">Responsável BRQ<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="responsavelBRQ" type="text" id="text-input" name="text-input" class="form-control"/>
+                                                    <span class="obrigatorio"><form:errors path="responsavelBRQ"/></span>
                                                     <small class="form-text text-muted">Por favor insira o usuario
-                                                        Responsável</small>
+                                                        Responsável </small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Responsável Cliente</label>
+                                                    <label class=" form-control-label">Responsável cliente<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:input path="responsavelCliente" type="text" id="text-input" name="text-input" class="form-control"/>
+                                                    <span class="obrigatorio"><form:errors path="responsavelCliente"/></span>
                                                     <small class="form-text text-muted">Por favor insira o Responsável Cliente</small>
                                                 </div>
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="select" class=" form-control-label">Tecnologias</label>
+                                                    <label for="select" class=" form-control-label">Tecnologias<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <form:select path="tecnologia.id" id="select" class="form-control">
@@ -121,7 +127,7 @@
 					                                      </option> 
 				                                        </c:forEach> 
                                                     </form:select>
-                                                    <small class="form-text text-muted">Por favor escolha a tecnologia</small>
+                                                    <small class="form-text text-muted">Por favor escolha a tecnologia </small>
                                                 </div>
                                             </div>
                                             
@@ -137,7 +143,7 @@
 					                                      	</option>
 					                                      </c:forEach>
                                                     </form:select>
-                                                    <small class="form-text text-muted">Por favor insira o status</small>
+                                                    <small class="form-text text-muted">Por favor insira o status </small>
                                                 </div>
                                             </div>
                                           
@@ -148,18 +154,21 @@
                                                 <div class="col-12 col-md-9">
                                                     <form:textarea path="descricao" id="textarea-input" rows="6"
                                                          class="form-control"/>
+                                                    <form:errors path="descricao"/>
                                                     <small>Descreva o seu projeto</small>
                                                 </div>
                                             </div>
                                     </div>
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
-                                            <i class="fa fa-dot-circle-o"></i> Salvar
-                                        </button>
-
+                                        
                                         <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
                                             <i class="fa fa-ban"></i> ${projeto.id != null ? 'Reset' : 'Limpar'}
                                         </button>
+                                        
+                                        <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
+                                            <i class="fa fa-dot-circle-o"></i> Salvar
+                                        </button>
+                                        
                                                                            
                                          <c:if test="${projeto.id != null}">
                                         <a href="${urlDeletar}?id=${projeto.id}">

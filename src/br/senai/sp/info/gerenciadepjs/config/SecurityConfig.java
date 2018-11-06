@@ -1,6 +1,5 @@
 package br.senai.sp.info.gerenciadepjs.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -13,9 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity					// WSCA
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-	
-	@Autowired
-	private JwtFilter jwtFilter;
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {          
