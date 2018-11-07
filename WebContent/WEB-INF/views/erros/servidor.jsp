@@ -26,8 +26,8 @@
 				<div class="col-md-12 text-center">
 					<span class="display-1 d-block" style="color: white;">500</span>
 					<div class="mb-4 lead" style="color: white">Houve um erro técnico no sistema.</div>
-					<a href="/app/tecnologia" class="btn btn-link" style="color: white;">Voltar ao início</a>
-					<a href="/index" class="btn btn-link" style="color: white;">Tela de login</a>
+					<a href="/gerenciadepjs/app/tecnologia" class="btn btn-link" style="color: white;">Voltar ao início</a>
+					<a href="/gerenciadepjs/index" class="btn btn-link" style="color: white;">Tela de login</a>
 				</div>
 			</div>
 		</div>

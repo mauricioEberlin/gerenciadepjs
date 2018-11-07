@@ -26,7 +26,7 @@
 				<div class="col-md-12 text-center">
 					<span class="display-1 d-block" style="color: white;">404</span>
 					<div class="mb-4 lead" style="color: white">A página não foi encontrada</div>
-					<a href="/app/tecnologia" class="btn btn-link" style="color: white;">Voltar ao início</a>
+					<a href="/gerenciadepjs/app/tecnologia" class="btn btn-link" style="color: white;">Voltar ao início</a>
 				</div>
 			</div>
 		</div>

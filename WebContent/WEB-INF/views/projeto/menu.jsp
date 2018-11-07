@@ -74,43 +74,43 @@
                                         <ul class="pagination justify-content-center" style="color: #005fa3;">
                                             <c:if test="${pagina > 1}">
                                             <li class="page-item">                                              
-                                                <a class="page-link" href="?pagina=${pagina-1}" aria-label="Previous">
+                                                <a class="page-link" href="?&pagina=${pagina-1}" aria-label="Previous">
                                                     <span aria-hidden="true">&laquo;</span>
                                                     <span class="sr-only">Previous</span>
                                                 </a>                                                
                                             </li>
                                             </c:if>
 											<c:if test="${pagina-4 >= 1}">
-											<li class="page-item"><a class="page-link" href="?pagina=${pagina-4}">${pagina-4}</a></li>
+											<li class="page-item"><a class="page-link" href="?&pagina=${pagina-4}">${pagina-4}</a></li>
 											</c:if>                                           
                                            	<c:if test="${pagina-3 >= 1}">
-                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina-3}">${pagina-3}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?&pagina=${pagina-3}">${pagina-3}</a></li>
                                             </c:if>
                                             <c:if test="${pagina-2 >= 1}">
-                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina-2}">${pagina-2}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?&pagina=${pagina-2}">${pagina-2}</a></li>
                                             </c:if>
                                             <c:if test="${pagina-1 >= 1}">
-                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina-1}">${pagina-1}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?&pagina=${pagina-1}">${pagina-1}</a></li>
                                            	</c:if>
                                                                                     
-                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina}">${pagina}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?&pagina=${pagina}">${pagina}</a></li>
                                             
                                             <c:if test="${pagina*9 < fn:length(projetos)}">
-                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina+1}">${pagina+1}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?&pagina=${pagina+1}">${pagina+1}</a></li>
                                             </c:if>
                                             <c:if test="${(pagina+1)*9 < fn:length(projetos)}">
-                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina+2}">${pagina+2}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?&pagina=${pagina+2}">${pagina+2}</a></li>
 											</c:if>
 											<c:if test="${(pagina+2)*9 < fn:length(projetos)}">
-                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina+3}">${pagina+3}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?&pagina=${pagina+3}">${pagina+3}</a></li>
                                             </c:if>
                                             <c:if test="${(pagina+3)*9 < fn:length(projetos)}">
-                                            <li class="page-item"><a class="page-link" href="?pagina=${pagina+4}">${pagina+4}</a></li>
+                                            <li class="page-item"><a class="page-link" href="?&pagina=${pagina+4}">${pagina+4}</a></li>
 											</c:if>
                                             
                                             <c:if test="${pagina*9 < fn:length(projetos)}">
                                             <li class="page-item">
-                                                <a class="page-link" href="?pagina=${pagina+1}" aria-label="Next">
+                                                <a class="page-link" href="?&pagina=${pagina+1}" aria-label="Next">
                                                     <span aria-hidden="true">&raquo;</span>
                                                     <span class="sr-only">Next</span>
                                                 </a>

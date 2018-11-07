@@ -43,6 +43,14 @@ public class ProjetoController {
 			model.addAttribute("projetos", dao.buscarTodos());	
 		}
 		
+		if (sucesso != null) {
+			model.addAttribute("sucesso", "true");
+		}
+		
+		if (pagina != null) {
+			model.addAttribute("pagina", pagina);
+		}
+		
 		if(nome != null) {
 			model.addAttribute("projetos", dao.pesquisarPorNome(nome));
 		}
@@ -54,15 +62,7 @@ public class ProjetoController {
 		if(idStatus != null) {
 			model.addAttribute("projetos", dao.buscarPorStatus(idStatus));
 		}
-		
-		if (sucesso != null) {
-			model.addAttribute("sucesso", "true");
-		}
-		
-		if (pagina != null) {
-			model.addAttribute("pagina", pagina);
-		}
-		
+				
 		return "projeto/menu";
 	}
 	

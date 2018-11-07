@@ -30,7 +30,12 @@
 				<div class="alert alert-primary" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
             		Tecnologia cadastrada com sucesso!                            
             	</div>
-            </c:if>				
+            </c:if>
+            <c:if test="${not empty erro}">
+				<div class="alert alert-warning" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
+            		Erro ao deletar tecnologia: Possuí um ou mais projetos.                            
+            	</div>
+            </c:if>					
 			<div class="row "
 				style="max-width: 800px; display: block; margin: auto;">
 				<div class="col-lg-12">

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.senai.sp.info.gerenciadepjs.dao.ProjetoDAO;
 import br.senai.sp.info.gerenciadepjs.dao.TecnologiaDAO;
 import br.senai.sp.info.gerenciadepjs.model.Tecnologia;
 
@@ -23,10 +24,14 @@ public class TecnologiaController {
 	@Autowired
 	private TecnologiaDAO dao;
 	
+	@Autowired
+	private ProjetoDAO pjsDao;
+	
 	@GetMapping("/tecnologia")
 	public String AbrirMenuTecnologias (Model model,
 			@RequestParam (name = "pesquisa", required = false)String nome,
-			@RequestParam (name = "sucesso", required = false)String sucesso){ 
+			@RequestParam (name = "sucesso", required = false)String sucesso,
+			@RequestParam (name = "erro", required = false)String erro){ 
 
 		if (nome != null) {
 			model.addAttribute("tecnologias", dao.pesquisarPorNome(nome));
@@ -37,9 +42,11 @@ public class TecnologiaController {
 		if (sucesso != null) {
 			model.addAttribute("sucesso", "true");
 		}
-				
-		return "tecnologia/menu";
 		
+		if(erro != null) {
+			model.addAttribute("erro", "true");
+		}				
+		return "tecnologia/menu";		
 	}
 	
 	@GetMapping("/tecnologia/novo")
@@ -55,8 +62,14 @@ public class TecnologiaController {
 	
 	
 	@GetMapping("/tecnologia/deletar")
-	public String deletar(@RequestParam(name = "id", required = true)Long id) {
-		dao.deletar(dao.buscar(id));
+	public String deletar(@RequestParam(name = "id", required = true)Long id, Model model) {
+		
+		if(!pjsDao.buscarPorTecnologia(id).isEmpty()) {
+			model.addAttribute("erro","true");
+			return "redirect:/app/tecnologia";		
+		}
+
+		dao.deletar(dao.buscar(id));				
 		return "redirect:/app/tecnologia";
 	}
 
@@ -72,7 +85,7 @@ public class TecnologiaController {
 		}
 		
 		if(tecnologia.getNome() == null) {
-			br.addError(new FieldError("tecnologia", "nome", "O campo Nome está vazio"));
+			br.addError(new FieldError("tecnologia", "nome", "O campo 'Nome' está vazio"));
 		}
 		
 		if(br.hasErrors()) {
