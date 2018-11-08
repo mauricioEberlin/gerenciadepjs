@@ -20,25 +20,25 @@
 <body>
 	<div class="page-wrapper">
 		<!-- HEADER MOBILE-->
-		<header class="header-mobile d-block d-lg-none">
-			<div class="header-mobile__bar">
-				<div class="container-fluid">
-
-					<div class="header-mobile-inner">
-						<form class="form-headerr" action="${urlPesquisar}" method="GET">
-							<input class="au-input au-input--xl" style="width: 170px"
-								type="text" name="pesquisa" placeholder="Nome ${placeholder}" />
-							<button class="au-btn--submit" type="submit">
-								<i class="zmdi zmdi-search"></i>
-							</button>
-						</form>
-						<button class="hamburger hamburger--slider" type="button">
-							<span class="hamburger-box"> <span class="hamburger-inner"></span>
-							</span>
-						</button>
-					</div>
-				</div>
-			</div>
+        <header class="header-mobile d-block d-lg-none">
+            <div class="header-mobile__bar">
+                <div class="container-fluid">
+                    <div class="header-mobile-inner">
+                        <form class="form-headerr" action="${urlPesquisar}" method="GET">
+                            <input class="au-input au-input--xl" style="width:170px" type="text" name="pesquisa"
+                                placeholder="Nome ${placeholder}" />
+                            <button class="au-btn--submit" type="submit">
+                                <i class="zmdi zmdi-search"></i>
+                            </button>
+                        </form>                      
+                        <button class="hamburger hamburger--slider" type="button">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
 			<nav class="navbar-mobile">
 				<div class="container-fluid">
 					<ul class="navbar-mobile__list list-unstyled">

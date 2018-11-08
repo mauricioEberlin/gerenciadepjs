@@ -2,12 +2,6 @@
 .copyright{
   padding: 50px;
 }
-/*obrigatório*/
-
-.obrigatorio{
-	color: red;
-	font-size: 14px;
-}
 
 /* Tela de Erro */
 .TeladeErro {

@@ -22,8 +22,6 @@
 <c:set var="priProjeto" value="${(pjsPPag*pagina)-pjsPPag}"/>
 <c:set var="ultProjeto" value="${(pjsPPag*pagina)-1}"/>
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,7 +41,7 @@
                     
              <c:if test="${not empty sucesso}">
 				<div class="alert alert-primary" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
-            		Projeto cadastrada com sucesso!                            
+            		Projeto cadastrado/editado com sucesso!                            
             	</div>
             </c:if>	
                         
@@ -53,7 +51,7 @@
                         
                         <div class="row" >
                         
-							<c:forEach items="${projetos}" var="projeto" begin="${priProjeto}" end="${ultProjeto}"><!--   -->
+							<c:forEach items="${projetos}" var="projeto" begin="${priProjeto}" end="${ultProjeto}">
                             <div id="lista" class="col-md-4">
                                 <div class="card card-projetos border border-primary">
                                     <div class="card-header">

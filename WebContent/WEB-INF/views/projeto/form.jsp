@@ -117,17 +117,16 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="select" class=" form-control-label">Tecnologias<b class="obrigatorio">*</b></label>
+                                                    <label for="select" class=" form-control-label">Tecnologias<span class="obrigatorio">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <form:select path="tecnologia.id" id="select" class="form-control">
+                                                    <form:select path="tecnologia.id" class="selectpicker" multiple="true">
                                                         <c:forEach items="${tecnologias}" var="tecnologia">
-					                                      <option value="${tecnologia.id}" ${projeto.tecnologia.id eq tecnologia.id ? 'selected' : ''}>
-					                                      ${tecnologia.nome}
-					                                      </option> 
-				                                        </c:forEach> 
-                                                    </form:select>
-                                                    <small class="form-text text-muted">Por favor escolha a tecnologia </small>
+                                                        	<option value="${tecnologia.id}" ${projeto.tecnologia.id eq tecnologia.id ? 'selected' : ''}>${tecnologia.nome}</option>
+                                                    	</c:forEach>
+													</form:select>
+                                                    <small class="form-text text-muted">Por favor escolha as
+                                                        tecnologias do seu projeto</small>
                                                 </div>
                                             </div>
                                             
@@ -209,5 +208,7 @@
     <script src="${vendor}/select2/select2.min.js"></script>
     <!-- Main JS-->
     <script src="${js}/main.js"></script>
+    <script src="${js}/bootstrap-select.js"></script>
+    <script src="${js}/bootstrap-select.js.map"></script>
  </body>
 </html>

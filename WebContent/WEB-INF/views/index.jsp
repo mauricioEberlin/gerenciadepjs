@@ -20,6 +20,7 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
+    <link rel="icon" href="${img}/favicon.png" type="image/png">
     <!-- Title Page-->
     <title>Login</title>
     <!-- Fontfaces CSS-->
