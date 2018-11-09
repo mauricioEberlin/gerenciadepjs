@@ -1,5 +1,8 @@
 package br.senai.sp.info.gerenciadepjs.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -17,6 +20,7 @@ import br.senai.sp.info.gerenciadepjs.dao.ProjetoDAO;
 import br.senai.sp.info.gerenciadepjs.dao.StatusDAO;
 import br.senai.sp.info.gerenciadepjs.dao.TecnologiaDAO;
 import br.senai.sp.info.gerenciadepjs.model.Projeto;
+import br.senai.sp.info.gerenciadepjs.model.Tecnologia;
 
 @Controller
 @RequestMapping("/app")
@@ -96,7 +100,8 @@ public class ProjetoController {
 	}
 	
 	@PostMapping("/projeto/salvar")
-	public String salvar(@Valid Projeto projeto, BindingResult brprojeto, 
+	public String salvar(@Valid Projeto projeto, BindingResult brprojeto,
+			@RequestParam(name = "tecnologias", required = true) Long[] tecnologiaId,
 			Model model) {
 		
 		if (dao.buscarPorNome(projeto.getNome()) != null && dao.buscar(projeto.getId()) == null) {
@@ -111,6 +116,13 @@ public class ProjetoController {
 			return "projeto/form";
 		}
 		
+		List<Tecnologia> tecnologias = new ArrayList<>();
+		for (int i = 0; i < tecnologiaId.length; i++) {		
+			tecnologias.add(daoTec.buscar(tecnologiaId[i]));
+		}
+	
+		projeto.setTecnologia(tecnologias);
+				
 		if (dao.buscar(projeto.getId()) == null) {
 			dao.persistir(projeto);
 		}else {

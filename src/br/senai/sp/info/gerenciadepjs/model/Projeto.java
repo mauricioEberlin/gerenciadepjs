@@ -1,12 +1,14 @@
 package br.senai.sp.info.gerenciadepjs.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
@@ -20,55 +22,62 @@ public class Projeto {
 
 	@Id
 	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(nullable = false, name = "tecnologia_id")
-	private Tecnologia tecnologia;
-	
+
+	@ManyToMany
+	private List<Tecnologia> tecnologia;
+
 	@ManyToOne
 	@JoinColumn(nullable = false, name = "status_id")
 	private Status status;
-	
+
 	@Column(length = 40, nullable = false, unique = false)
 	@NotEmpty(message = "Este campo é obrigatório!")
 	private String nome;
-	
+
 	@Column(length = 64, nullable = false, unique = false)
 	@NotEmpty(message = "Este campo é obrigatório!")
 	private String responsavelBRQ;
-	
+
 	@Column(length = 64, nullable = false, unique = false)
 	@NotEmpty(message = "Este campo é obrigatório!")
 	private String responsavelCliente;
-	
+
 	@Column(nullable = true)
 	private Float horas;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(nullable = true)
 	private Date dataInicio;
-	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(nullable = true)
 	private Date dataFim;
-	
+
 	@Lob
 	@Column(nullable = true)
 	@Size(max = 500, message = "O campo não pode ultrapassar o limite de 500 caractéres.")
 	private String descricao;
-	
-	//G&S
-	
-	public Tecnologia getTecnologia() {
+
+	// G&S
+
+	// public Tecnologia getTecnologia() {
+	// return tecnologia;
+	// }
+	//
+	// public void setTecnologia(Tecnologia tecnologia) {
+	// this.tecnologia = tecnologia;
+	// }
+
+	public Long getId() {
+		return id;
+	}
+
+	public List<Tecnologia> getTecnologia() {
 		return tecnologia;
 	}
 
-	public void setTecnologia(Tecnologia tecnologia) {
+	public void setTecnologia(List<Tecnologia> tecnologia) {
 		this.tecnologia = tecnologia;
-	}
-	
-	public Long getId() {
-		return id;
 	}
 
 	public void setId(Long id) {
@@ -106,12 +115,12 @@ public class Projeto {
 	public void setHoras(Float horas) {
 		this.horas = horas;
 	}
-	
+
 	public Date getDataInicio() {
 		return dataInicio;
 	}
-	
-	public void setDataInicio(Date dataInicio){
+
+	public void setDataInicio(Date dataInicio) {
 		this.dataInicio = dataInicio;
 	}
 
@@ -119,7 +128,7 @@ public class Projeto {
 		return dataFim;
 	}
 
-	public void setDataFim(Date dataFim){
+	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
 	}
 
@@ -137,5 +146,5 @@ public class Projeto {
 
 	public void setStatus(Status status) {
 		this.status = status;
-	}	
+	}
 }

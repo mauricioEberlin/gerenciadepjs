@@ -1,3 +1,9 @@
+/* Campos obrigatórios */
+.obrigatorio{
+	color: red;
+	font-size: 12px;
+}
+
 /* Gambiarra do ponto */
 .copyright{
   padding: 50px;

@@ -151,7 +151,7 @@
 									</tr>
 									<tr>
 										<td>Tecnologia</td>
-										<td>${projeto.tecnologia.nome}</td>
+										<td>${projeto.id}</td>
 									</tr>
 									<tr>
 										<td>Data Início</td>
