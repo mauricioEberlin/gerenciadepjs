@@ -146,14 +146,19 @@
 									</div>
 									<div class="col-12 col-md-9">
 
-										<select name="tecnologias" class="selectpicker"
-											multiple>
+										<select name="tecnologias" class="selectpicker" multiple>
 											<c:forEach items="${tecnologias}" var="tecnologia">
+												
 												<option value="${tecnologia.id}"
-													${projeto_tecnologia.Projeto_id eq tecnologia.id ? 'selected' : ''}>${tecnologia.nome}</option>
+													<c:forEach items="${projeto.tecnologia}" var="ptec">												
+														${ptec.id eq tecnologia.id ? 'selected' : ''}
+													</c:forEach>
+													>${tecnologia.nome}												
+												</option>
+																									
 											</c:forEach>
 										</select>
-
+										
 										<small class="form-text text-muted">Por favor escolha
 											as tecnologias do seu projeto</small>
 									</div>

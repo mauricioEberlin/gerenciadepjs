@@ -78,10 +78,11 @@ public class ProjetoJPA implements ProjetoDAO {
 
 	@Override
 	public List<Projeto> buscarPorTecnologia(Long id) {
-		String hql = "FROM Projeto p WHERE p.tecnologia.id = :id";
+		String hql = "FROM Projeto p join p.tecnologia t WHERE t.id = :id";
+//		String hql = "FROM Projeto p WHERE p.tecnologia.id = :id";
 		Query query  = sessionFac.getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);
-				
+		System.out.println(query.list());
 		return query.list();
 		
 	}

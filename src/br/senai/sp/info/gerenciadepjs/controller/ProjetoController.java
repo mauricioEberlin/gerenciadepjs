@@ -109,8 +109,7 @@ public class ProjetoController {
 		}
 		
 		if (brprojeto.hasErrors()) {
-			System.out.print("ERROS CADASTRAR PROJETO: ");
-			System.out.println(brprojeto.getAllErrors());
+			System.out.print("ERROS CADASTRAR PROJETO: " + brprojeto.getAllErrors());
 			model.addAttribute("status", daoStatus.buscarTodos());
 			model.addAttribute("tecnologias", daoTec.buscarTodos());
 			return "projeto/form";
