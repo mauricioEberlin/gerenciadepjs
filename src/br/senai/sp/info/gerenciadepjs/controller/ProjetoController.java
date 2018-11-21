@@ -101,12 +101,18 @@ public class ProjetoController {
 	
 	@PostMapping("/projeto/salvar")
 	public String salvar(@Valid Projeto projeto, BindingResult brprojeto,
-			@RequestParam(name = "tecnologias", required = true) Long[] tecnologiaId,
+			@RequestParam(name = "tecnologias", required = false) Long[] tecnologiaId,
 			Model model) {
 		
 		if (dao.buscarPorNome(projeto.getNome()) != null && dao.buscar(projeto.getId()) == null) {
 			brprojeto.addError(new FieldError("projeto", "nome", "O nome já existe"));
 		}
+		
+		if (tecnologiaId == null) {
+			brprojeto.addError(new FieldError("projeto", "tecnologia", "Selecione uma tecnologia no mínimo."));
+		}
+		
+		System.out.println("Sem TEC: " + tecnologiaId);
 		
 		if (brprojeto.hasErrors()) {
 			System.out.print("ERROS CADASTRAR PROJETO: " + brprojeto.getAllErrors());
@@ -121,15 +127,14 @@ public class ProjetoController {
 		}
 	
 		projeto.setTecnologia(tecnologias);
-				
+			
 		if (dao.buscar(projeto.getId()) == null) {
 			dao.persistir(projeto);
 		}else {
 			Projeto projetoBanco = dao.buscar(projeto.getId());	
 			BeanUtils.copyProperties(projeto, projetoBanco, "id");
 			dao.alterar(projetoBanco);
-		}	
-		
+		}				
 		model.addAttribute("sucesso", "true");
 		return "redirect:/app/projeto";
 	}

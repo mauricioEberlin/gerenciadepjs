@@ -170,20 +170,20 @@
 								</tr>
 								<tr>
 									<td>Data Início</td>
-									<td>${projeto.dataInicio}</td>
+									<td>${projeto.dataInicio} ${projeto.dataInicio == null ? '<span class="obrigatorio">Não informado</span>' : ''}</td>
 								</tr>
 								<tr>
 									<td>Data Fim</td>
-									<td>${projeto.dataFim}</td>
+									<td>${projeto.dataFim} ${projeto.dataFim  == null ? '<span class="obrigatorio">Não informado</span>' : ''}</td>
 								</tr>
 								<tr>
 									<td>Descrição</td>
-									<td>${projeto.descricao}</td>
+									<td>${projeto.descricao} ${projeto.descricao == null ? '<span class="obrigatorio">Não informado</span>' : ''}</td>
 								</tr>
 
 								<tr>
 									<td>Horas</td>
-									<td>${projeto.horas}horas</td>
+									<td>${projeto.horas} ${projeto.horas == null ? '<span class="obrigatorio">Não informado</span>' : ' horas'}</td>
 								</tr>
 								<tr>
 									<td>Responsável BRQ</td>

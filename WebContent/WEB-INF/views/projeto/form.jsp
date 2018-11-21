@@ -54,12 +54,24 @@
 											<form:input path="id" type="number" id="number-input"
 												name="text-input" class="form-control" />
 											<small class="form-text text-muted">Insira o id do
-												projeto</small>
+												projeto (não poderá ser alterado).</small>
 										</div>
 									</div>
 								</c:if>
 								<form:hidden path="id" value="${projeto.id}" />
-
+								<c:if test="${projeto.id != null}">
+									<div class="row form-group">
+										<div class="col col-md-3">
+											<label class=" form-control-label">ID</label>
+										</div>
+										<div class="col-12 col-md-9">
+											<input type="number" id="number-input"
+												name="text-input" class="form-control" disabled="true" value="${projeto.id}"/>
+											<small class="form-text text-muted">Id do
+												projeto não pode ser alterado</small>
+										</div>
+									</div>
+								</c:if>
 								<div class="row form-group">
 									<div class="col col-md-3">
 										<label class=" form-control-label">Nome<b
@@ -157,11 +169,14 @@
 												</option>
 																									
 											</c:forEach>
-										</select>
+										</select></br>
+										
+										<span class="obrigatorio"><form:errors path="tecnologia"/></span>
 										
 										<small class="form-text text-muted">Por favor escolha
 											as tecnologias do seu projeto</small>
 									</div>
+									
 								</div>
 
 								<div class="row form-group">
