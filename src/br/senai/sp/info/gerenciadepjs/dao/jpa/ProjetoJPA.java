@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.senai.sp.info.gerenciadepjs.dao.ProjetoDAO;
 import br.senai.sp.info.gerenciadepjs.model.Projeto;
-import br.senai.sp.info.gerenciadepjs.model.Status;
-import br.senai.sp.info.gerenciadepjs.model.Tecnologia;
 
 @Repository
 @Transactional
@@ -78,13 +76,12 @@ public class ProjetoJPA implements ProjetoDAO {
 
 	@Override
 	public List<Projeto> buscarPorTecnologia(Long id) {
-		String hql = "FROM Projeto p join p.tecnologia t WHERE t.id = :id";
-//		String hql = "FROM Projeto p WHERE p.tecnologia.id = :id";
+//		SQLQuery sql = sessionFac.getCurrentSession().createSQLQuery("Select p.* from projeto p inner join projeto_tecnologia pt on"
+//				+ " p.id = pt.Projeto_id inner join tecnologia t on pt.tecnologia_id = t.id");	
+		String hql = "SELECT p FROM Projeto p join p.tecnologia t WHERE t.id = :id";
 		Query query  = sessionFac.getCurrentSession().createQuery(hql);
 		query.setParameter("id", id);
-		System.out.println(query.list());
-		return query.list();
-		
+		return query.list();		
 	}
 
 	@Override

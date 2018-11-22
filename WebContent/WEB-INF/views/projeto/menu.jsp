@@ -63,7 +63,7 @@
 							</div>
 							<div class="card-body">
 								<p class="card-text">
-									Status: ${projeto.status.nome} <br>${projeto.descricao}</p>
+									<b>Status:</b> ${projeto.status.nome} <br>${projeto.descricao}</p>
 								<button type="button" class="btn btn-info"
 									style="margin-top: 7%;" data-toggle="modal"
 									data-target="#${projeto.id}">Ver detalhes</button>
@@ -160,30 +160,22 @@
 								<tr>
 									<td>Nome</td>
 									<td>${projeto.nome}</td>
-								</tr>
-								<tr>
-									<td>Tecnologias</td>
-									<td>
-										<c:forEach items="${projeto.tecnologia}" var="t">
-											<c:out value="${t.nome}"/><br>											
-										</c:forEach></td>
-								</tr>
+								</tr>								
 								<tr>
 									<td>Data Início</td>
 									<td>${projeto.dataInicio} ${projeto.dataInicio == null ? '<span class="obrigatorio">Não informado</span>' : ''}</td>
 								</tr>
 								<tr>
 									<td>Data Fim</td>
-									<td>${projeto.dataFim} ${projeto.dataFim  == null ? '<span class="obrigatorio">Não informado</span>' : ''}</td>
-								</tr>
-								<tr>
-									<td>Descrição</td>
-									<td>${projeto.descricao} ${projeto.descricao == null ? '<span class="obrigatorio">Não informado</span>' : ''}</td>
-								</tr>
-
+									<td>${projeto.dataFim} ${projeto.dataFim == null ? '<span class="obrigatorio">Não informado</span>' : ''}</td>
+								</tr>								
 								<tr>
 									<td>Horas</td>
 									<td>${projeto.horas} ${projeto.horas == null ? '<span class="obrigatorio">Não informado</span>' : ' horas'}</td>
+								</tr>
+								<tr>
+									<td>Status</td>
+									<td>${projeto.status.nome}</td>
 								</tr>
 								<tr>
 									<td>Responsável BRQ</td>
@@ -192,10 +184,17 @@
 								<tr>
 									<td>Responsável cliente</td>
 									<td>${projeto.responsavelCliente}</td>
+								</tr>								
+								<tr>
+									<td>Tecnologias</td>
+									<td>
+										<c:forEach items="${projeto.tecnologia}" var="t">
+											<c:out value="${t.nome}"/><br>											
+										</c:forEach></td>
 								</tr>
 								<tr>
-									<td>Status</td>
-									<td>${projeto.status.nome}</td>
+									<td>Descrição</td>
+									<td>${projeto.descricao} ${projeto.descricao eq "" ? '<span class="obrigatorio">Não informado</span>' : ''}</td>
 								</tr>
 							</tbody>
 						</table>

@@ -1,5 +1,7 @@
 package br.senai.sp.info.gerenciadepjs.rest.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.senai.sp.info.gerenciadepjs.exceptions.EntidadeNaoEncontradaException;
+import br.senai.sp.info.gerenciadepjs.model.Projeto;
 import br.senai.sp.info.gerenciadepjs.service.ProjetoService;
 
 @RestController
@@ -38,7 +41,7 @@ public class ProjetoRestController {
 	} 
 	
 	@GetMapping("/tec{idTecnologia}")
-	public ResponseEntity<Object> buscarPorTecnologia(@PathVariable Long idTecnologia){
+	public ResponseEntity<List<Projeto>> buscarPorTecnologia(@PathVariable Long idTecnologia){
 		try {
 			return ResponseEntity.ok(projetoService.buscarPorTecnologia(idTecnologia));
 		} catch (Exception e) {

@@ -36,7 +36,7 @@ public class CadastrarStatusJob implements ApplicationListener<ContextRefreshedE
 		}
 		
 		if(dao.buscar(2) == null) {		
-			System.out.println("[Jobs]: Cadastrando status: finalizado");;
+			System.out.println("[Jobs]: Cadastrando status: finalizado");
 			finalizado.setId(2);
 			finalizado.setNome("Finalizado");
 			dao.persistir(finalizado);

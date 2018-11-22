@@ -203,7 +203,9 @@
 									<div class="col-12 col-md-9">
 										<form:textarea path="descricao" id="textarea-input" rows="6"
 											class="form-control" />
-										<form:errors path="descricao" />
+										<span class="obrigatorio">
+											<form:errors path="descricao"/>
+										</span></br>
 										<small>Descreva o seu projeto</small>
 									</div>
 								</div>

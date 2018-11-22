@@ -61,24 +61,16 @@ public class Projeto {
 
 	// G&S
 
-	// public Tecnologia getTecnologia() {
-	// return tecnologia;
-	// }
-	//
-	// public void setTecnologia(Tecnologia tecnologia) {
-	// this.tecnologia = tecnologia;
-	// }
-
-	public Long getId() {
-		return id;
-	}
-
 	public List<Tecnologia> getTecnologia() {
 		return tecnologia;
 	}
 
 	public void setTecnologia(List<Tecnologia> tecnologia) {
 		this.tecnologia = tecnologia;
+	}
+	
+	public Long getId() {
+		return id;
 	}
 
 	public void setId(Long id) {
@@ -148,4 +140,5 @@ public class Projeto {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
+
 }

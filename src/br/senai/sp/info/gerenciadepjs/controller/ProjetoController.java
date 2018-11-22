@@ -77,8 +77,7 @@ public class ProjetoController {
 		model.addAttribute("tecnologias", daoTec.buscarTodos());
 		model.addAttribute("projeto", new Projeto());
 				
-		return "projeto/form";
-		
+		return "projeto/form";		
 	}
 	
 	@GetMapping("/projeto/editar")
@@ -89,14 +88,6 @@ public class ProjetoController {
 		model.addAttribute("projeto", dao.buscar(id));
 			
 		return "projeto/form";
-	}
-	
-	@GetMapping("/projeto/visualizar")
-	public String AbrirVerProjeto(@RequestParam(required = true)Long id, Model model) {
-		
-		model.addAttribute("projeto", dao.buscar(id));
-		
-		return "projeto/view";
 	}
 	
 	@PostMapping("/projeto/salvar")
@@ -111,8 +102,6 @@ public class ProjetoController {
 		if (tecnologiaId == null) {
 			brprojeto.addError(new FieldError("projeto", "tecnologia", "Selecione uma tecnologia no mínimo."));
 		}
-		
-		System.out.println("Sem TEC: " + tecnologiaId);
 		
 		if (brprojeto.hasErrors()) {
 			System.out.print("ERROS CADASTRAR PROJETO: " + brprojeto.getAllErrors());

@@ -42,7 +42,7 @@ public class Usuario implements Authentication{
 	@Email
 	private String email;
 	
-	@Column(length = 11, nullable = false, unique = true)
+	@Column(length = 11, nullable = false)
 	@Size(min = 8, max = 11, message = "Telefone deve conter entre 8 a 11 caractéres.")
 	private String telefone;
 	
