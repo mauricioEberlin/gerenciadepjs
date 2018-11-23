@@ -25,7 +25,7 @@
 		<div class="container-fluid">
 
 			<button>
-				<a href="/gerenciadepjs/app/tecnologia"> <img
+				<a href="/gerenciadepjs/app/projeto"> <img
 					src="${img}/voltar.png" title="Voltar"
 					style="color: #005fa3; margin-top: -20px; width: 45px;"
 					alt="voltar para a página anterior">
@@ -53,6 +53,7 @@
 										<div class="col-12 col-md-9">
 											<form:input path="id" type="number" id="number-input"
 												name="text-input" class="form-control" />
+												<span class="obrigatorio"><form:errors path="id" /></span>
 											<small class="form-text text-muted">Insira o id do
 												projeto (não poderá ser alterado).</small>
 										</div>

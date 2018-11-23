@@ -50,6 +50,9 @@
 				style="background-color: #dee2e6; color: black;">
 				Projetos <span class="badge badge-light">${fn:length(projetos)}</span>
 			</button>
+			
+			<a href="${urlNovoProjeto}"><button class="au-btn au-btn-icon au-btn--green au-btn--small" style="background-color:#005fa3;">
+                                        <i class="zmdi zmdi-plus"></i>add projeto</button></a>
 
 			<div class="row">
 

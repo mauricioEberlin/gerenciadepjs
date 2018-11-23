@@ -95,6 +95,10 @@ public class ProjetoController {
 			@RequestParam(name = "tecnologias", required = false) Long[] tecnologiaId,
 			Model model) {
 		
+		if (projeto.getId() == null) {
+			brprojeto.addError(new FieldError("projeto", "id", "O ID do projeto é obrigatório!"));
+		}
+		
 		if (dao.buscarPorNome(projeto.getNome()) != null && dao.buscar(projeto.getId()) == null) {
 			brprojeto.addError(new FieldError("projeto", "nome", "O nome já existe"));
 		}

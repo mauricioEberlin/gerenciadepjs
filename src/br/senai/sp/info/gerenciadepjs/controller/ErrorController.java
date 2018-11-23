@@ -23,6 +23,11 @@ public class ErrorController {
 		return "erros/401";
 	}
 	
+	@GetMapping("/400")
+	public String abrirErro400() {
+		return "erros/400";
+	}
+	
 	@GetMapping("/servidor")
 	public String abrirErroServidor() {
 		return "erros/servidor";
