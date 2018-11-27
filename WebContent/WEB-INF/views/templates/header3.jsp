@@ -28,7 +28,7 @@
                             <a class="js-arrow" href="#">
                                 Projetos</a>
                             <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                                <li><a href="/gerenciadepjs/app/projeto">TODOS</a></li>
+                                <li><a href="/gerenciadepjs/app/projeto"><b>Todos</b></a></li>
                                 <li>
                                     <a href="/gerenciadepjs/app/projeto">Iniciados</a>
                                 </li>
@@ -80,7 +80,7 @@
                             <a class="js-arrow" href="#">
                                 Projetos</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li><a href="/gerenciadepjs/app/projeto">TODOS</a></li>
+                                <li><a href="/gerenciadepjs/app/projeto"><b>Todos</b></a></li>
                                 <li>
                                     <a href="/gerenciadepjs/app/projeto">Iniciados</a>
                                 </li>

@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="card-footer">
                                     
-                                    <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
+                                    <button type="reset" class="btn btn-danger btn-sm">
                                             <i class="fa fa-ban"></i> ${tecnologia.id != null ? 'Reiniciar' : 'Limpar'}
                                         </button>
                                     
@@ -84,7 +84,7 @@
     </div>
     
    <!-- modal static -->
-			<div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+			<!--<div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
             data-backdrop="static">
                <div class="modal-dialog modal-sm" role="document">
                    <div class="modal-content">
@@ -94,18 +94,18 @@
                                <span aria-hidden="true">&times;</span>
                            </button>
                        </div>
-                       <div class="modal-body">
+                         <div class="modal-body">
                            <p>
                               Sua tecnologia foi ${tecnologia.id == null ? 'cadastrada' : 'editada'} com sucesso!
                            </p>
                        </div>
-                       <div class="modal-footer">
+                        <div class="modal-footer">
                            
                            <button type="button" class="btn btn-primary cad" style=" color: #fff; background-color:   #005fa3;">Fechar</button>
-                       </div>
+                       </div> 
                    </div>
                </div>
-           </div>
+           </div> -->
            <!-- end modal static -->
 
     <!-- Jquery JS-->

@@ -206,15 +206,14 @@
 											class="form-control" />
 										<span class="obrigatorio">
 											<form:errors path="descricao"/>
-										</span></br>
+										</span>
 										<small>Descreva o seu projeto</small>
 									</div>
 								</div>
 							</div>
 							<div class="card-footer">
 
-								<button type="reset" class="btn btn-danger btn-sm"
-									onclick="limparFormulario()">
+								<button type="reset" class="btn btn-danger btn-sm">
 									<i class="fa fa-ban"></i> ${projeto.id != null ? 'Reset' : 'Limpar'}
 								</button>
 

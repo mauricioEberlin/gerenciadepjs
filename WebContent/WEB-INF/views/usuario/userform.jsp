@@ -89,7 +89,7 @@
                                             </div>                                                                                   
                                     </div>
                                     <div class="card-footer">                                     
-                                         <button type="reset" class="btn btn-danger btn-sm" onclick="limparFormulario()">
+                                         <button type="reset" class="btn btn-danger btn-sm">
                                             <i class="fa fa-ban"></i> ${usuario.id != null ? 'Reiniciar' : 'Limpar'}
                                         </button>
                                          <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">

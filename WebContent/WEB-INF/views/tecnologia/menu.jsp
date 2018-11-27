@@ -27,12 +27,12 @@
 	<div class="section__content section__content--p30">
 		<div class="container-fluid">
 			<c:if test="${not empty sucesso}">
-				<div class="alert alert-primary" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
-            		Tecnologia cadastrada com sucesso!                            
+				<div id="a" class="alert alert-primary" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
+            		Tecnologia cadastrada/editada com sucesso!                            
             	</div>
             </c:if>
             <c:if test="${not empty erro}">
-				<div class="alert alert-warning" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
+				<div id="a" class="alert alert-warning" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
             		Erro ao deletar tecnologia: Possuí um ou mais projetos.                            
             	</div>
             </c:if>					
@@ -118,6 +118,12 @@
 <script src="${vendor}/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="${vendor}/chartjs/Chart.bundle.min.js"></script>
 <script src="${vendor}/select2/select2.min.js"></script>
+
+ 	<script>// depois de um tempo (4 segundos), ele vai buscar o item pelo id, no caso 'a', que é da div, e irá 'esconder' - hide()
+    $(document).ready(function () {     
+    setTimeout(function () { $('#a').hide() }, 5000);
+                        }); 
+    </script>
 
 <!-- Main JS-->
 <script src="${js}/main.js"></script>

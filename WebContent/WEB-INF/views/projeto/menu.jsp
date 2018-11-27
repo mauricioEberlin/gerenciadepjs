@@ -41,7 +41,7 @@
 		<div class="container-fluid">
 
 			<c:if test="${not empty sucesso}">
-				<div class="alert alert-primary" role="alert"
+				<div id="a" class="alert alert-primary" role="alert"
 					style="text-align: center; width: 50%; margin-left: 24%;">
 					Projeto cadastrado/editado com sucesso!</div>
 			</c:if>
@@ -229,6 +229,13 @@
 <script src="${vendor}/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="${vendor}/chartjs/Chart.bundle.min.js"></script>
 <script src="${vendor}/select2/select2.min.js"></script>
+
+<script>// depois de um tempo (4 segundos), ele vai buscar o item pelo id, no caso 'a', que é da div, e irá 'esconder' - hide()
+    $(document).ready(function () {     
+    setTimeout(function () { $('#a').hide() }, 5000);
+                        }); 
+    </script>
+
 <!-- Main JS-->
 <script src="${js}/main.js"></script>
 </body>
