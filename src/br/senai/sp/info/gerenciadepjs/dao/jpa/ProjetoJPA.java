@@ -97,8 +97,8 @@ public class ProjetoJPA implements ProjetoDAO {
 	public List<Projeto> pesquisarPorNome(String nome) {
 		String hql = "FROM Projeto p WHERE p.nome LIKE :nome "
 				+ "OR p.id LIKE :nome "
-				+ "OR p.responsavelBRQ LIKE :nome "
-				+ "OR p.status.nome LIKE :nome";
+				+ "OR p.responsavelBRQ LIKE :nome";
+				//+ "OR p.status.nome LIKE :nome";
 		
 		Query query = sessionFac.getCurrentSession().createQuery(hql);
 		query.setParameter("nome", "%"+nome+"%");

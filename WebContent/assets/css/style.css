@@ -52,7 +52,16 @@
     display: none;
   }
 }
-
+@media(max-width:1200px){
+	.js-acc-btn{
+	display:none;
+	}
+}
+@media(max-width:991px){
+	.js-acc-btn{
+	display:none;
+	}
+}
 
 
 /* Tela de Cadastro de tecnologias */

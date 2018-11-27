@@ -223,12 +223,11 @@
 								</button>
 
 
-								<c:if test="${projeto.id != null}">
-									<a href="${urlDeletar}?id=${projeto.id}">
-										<button type="button" class="btn btn-danger btn-sm">
+								<c:if test="${projeto.id != null}">									
+										<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" 
+                                                            data-target="#myModal">
 											<i class="fa fa-ban"></i> Deletar
-										</button>
-									</a>
+										</button>								
 								</c:if>
 
 							</div>
@@ -265,5 +264,33 @@
 <script src="${js}/main.js"></script>
 <script src="${js}/bootstrap-select.js"></script>
 <script src="${js}/bootstrap-select.js.map"></script>
+
+<div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Você tem certeza que quer excluir o projeto?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <a href="${urlDeletar}?id=${projeto.id}">
+                    <button type="button" class="btn btn-danger">Sim</button>
+                    </a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

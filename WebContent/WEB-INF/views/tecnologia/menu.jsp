@@ -75,12 +75,11 @@
 														data-placement="top" title="Editar">
 														<i class="zmdi zmdi-edit"></i>
 													</button>
-												</a> <a href="${urlDeletar}?id=${tecnologia.id}">
-													<button class="item" data-toggle="tooltip"
-														data-placement="top" title="Excluir">
+												</a> 
+													<button class="item" title="Excluir" data-toggle="modal" 
+                                                            data-target="#${tecnologia.id}">
 														<i class="zmdi zmdi-delete"></i>
-													</button>
-												</a>
+													</button>											
 											</div>
 										</td>
 									</tr>
@@ -127,5 +126,34 @@
 
 <!-- Main JS-->
 <script src="${js}/main.js"></script>
+
+<c:forEach items="${tecnologias}" var="tecnologia">
+<div class="modal" id="${tecnologia.id}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Você tem certeza que quer excluir a tecnologia?
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <a href="${urlDeletar}?id=${tecnologia.id}">
+                    <button type="button" class="btn btn-danger">Sim</button>
+                    </a>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</c:forEach>
+
 </body>
 </html>
