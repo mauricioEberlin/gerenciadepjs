@@ -232,7 +232,7 @@
 
 <script>// depois de um tempo (4 segundos), ele vai buscar o item pelo id, no caso 'a', que é da div, e irá 'esconder' - hide()
     $(document).ready(function () {     
-    setTimeout(function () { $('#a').hide() }, 5000);
+    setTimeout(function () { $('#a').hide() }, 4000);
                         }); 
     </script>
 

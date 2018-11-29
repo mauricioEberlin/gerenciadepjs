@@ -30,8 +30,7 @@ public class TecnologiaController {
 	@GetMapping("/tecnologia")
 	public String AbrirMenuTecnologias (Model model,
 			@RequestParam (name = "pesquisa", required = false)String nome,
-			@RequestParam (name = "sucesso", required = false)String sucesso,
-			@RequestParam (name = "erro", required = false)String erro){ 
+			@RequestParam (name = "mensagem", required = false)String mensagem){ 
 
 		if (nome != null) {
 			model.addAttribute("tecnologias", dao.pesquisarPorNome(nome));
@@ -39,13 +38,20 @@ public class TecnologiaController {
 			model.addAttribute("tecnologias", dao.buscarTodos());	
 		}
 		
-		if (sucesso != null) {
-			model.addAttribute("sucesso", "true");
-		}
-		
-		if(erro != null) {
-			model.addAttribute("erro", "true");
-		}				
+		try {
+			switch (mensagem) {		
+			case "sucesso":
+				model.addAttribute("sucesso","true");
+				break;				
+			case "erro":
+				model.addAttribute("erro","true");
+				break;					
+			case "sucessoUsr":
+				model.addAttribute("sucessoUsr","true");
+				break;
+			}
+		} catch (java.lang.NullPointerException e){}
+						
 		return "tecnologia/menu";		
 	}
 	
@@ -65,7 +71,7 @@ public class TecnologiaController {
 	public String deletar(@RequestParam(name = "id", required = true)Long id, Model model) {
 		
 		if(!pjsDao.buscarPorTecnologia(id).isEmpty()) {
-			model.addAttribute("erro","true");
+			model.addAttribute("mensagem","erro");
 			return "redirect:/app/tecnologia";		
 		}
 
@@ -102,7 +108,7 @@ public class TecnologiaController {
 			dao.alterar(tecnologiaBanco);
 		}	
 		
-		model.addAttribute("sucesso", "true");
+		model.addAttribute("mensagem","sucesso");
 		return "redirect:/app/tecnologia";	
 	}
 }

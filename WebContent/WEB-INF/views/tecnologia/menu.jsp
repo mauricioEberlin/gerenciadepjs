@@ -35,12 +35,17 @@
 				<div id="a" class="alert alert-warning" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
             		Erro ao deletar tecnologia: Possuí um ou mais projetos.                            
             	</div>
+            </c:if>	
+            <c:if test="${not empty sucessoUsr}">
+				<div id="a" class="alert alert-success" role="alert" style="text-align: center;width: 50%;margin-left: 24%;">
+            		Usuario cadastrado com sucesso!                            
+            	</div>
             </c:if>					
 			<div class="row "
 				style="max-width: 800px; display: block; margin: auto;">
 				<div class="col-lg-12">
 					<div class="table-responsive table--no-card m-b-30">
-						<table class="table table-borderless table-striped table-earning">
+						<table id="lista" class="table table-borderless table-striped table-earning">
 							<thead>
 								<tr>
 									<th>
@@ -117,15 +122,44 @@
 <script src="${vendor}/perfect-scrollbar/perfect-scrollbar.js"></script>
 <script src="${vendor}/chartjs/Chart.bundle.min.js"></script>
 <script src="${vendor}/select2/select2.min.js"></script>
+<!-- Main JS-->
+<script src="${js}/main.js"></script>
 
  	<script>// depois de um tempo (4 segundos), ele vai buscar o item pelo id, no caso 'a', que é da div, e irá 'esconder' - hide()
     $(document).ready(function () {     
-    setTimeout(function () { $('#a').hide() }, 5000);
-                        }); 
+    setTimeout(function () { $('#a').hide() }, 4000);
+                        });
+ 	
+    window.onload=function(){
+
+    	//para nomes
+    	var filtro = document.getElementById('filtro-nome');
+    	var tabela = document.getElementById('lista');
+    	filtro.onkeyup = function() {
+    	    var nomeFiltro = filtro.value;
+    	    for (var i = 1; i < tabela.rows.length; i++) {
+    	        var conteudoCelula = tabela.rows[i].cells[0].innerText;
+    	        var corresponde = conteudoCelula.toLowerCase().indexOf(nomeFiltro) >= 0;
+    	        tabela.rows[i].style.display = corresponde ? '' : 'none';
+    	    }
+    	};
+
+    	//para email
+    	var filtro2 = document.getElementById('filtro-email');
+    	var tabela2 = document.getElementById('lista');
+    	filtro2.onkeyup = function() {
+    	    var nomeFiltro = filtro2.value;
+    	    for (var i = 1; i < tabela2.rows.length; i++) {
+    	        var conteudoCelula = tabela2.rows[i].cells[0].innerText;
+    	        var corresponde = conteudoCelula.toLowerCase().indexOf(nomeFiltro) >= 0;
+    	        tabela2.rows[i].style.display = corresponde ? '' : 'none';
+    	    }
+    	};
+    	}
+ 	
     </script>
 
-<!-- Main JS-->
-<script src="${js}/main.js"></script>
+
 
 <c:forEach items="${tecnologias}" var="tecnologia">
 <div class="modal" id="${tecnologia.id}">

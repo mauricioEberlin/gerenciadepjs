@@ -117,7 +117,8 @@
                                             <i class="fa fa-ban"></i> ${usuario.id != null ? 'Reiniciar' : 'Limpar'}
                                         </button>
                                         
-                                        <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm">
+                                        <button type="submit" class="btn btn-secundary btn-tecnologias btn-sm"
+                                        data-toggle="modal" data-target="#staticModal">
                                             <i class="fa fa-dot-circle-o"></i> Salvar
                                         </button>
                                     </div>
@@ -150,5 +151,19 @@
     <script src="${vendor}/select2/select2.min.js"></script>
     <!-- Main JS-->
     <script src="${js}/main.js"></script>
+    
+    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+        data-backdrop="static">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">               
+                <div class="modal-body">
+                    <p>
+                        Enviando o email para o usuário, aguarde...
+                    </p>
+                </div>                
+            </div>
+        </div>
+    </div>
+        
    </body>
 </html>

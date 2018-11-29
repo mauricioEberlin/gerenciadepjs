@@ -71,7 +71,7 @@
                                 </c:if>
                                 
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" style="background-color:#009cde; "
-                                    type="submit">Enviar</button>                                
+                                    type="submit" data-toggle="modal" data-target="#staticModal">Enviar</button>                                
                                 
                                 <!--
                                 <div class="alert alert-primary" role="alert" style="text-align:center; background-color: #dff0d8; color: #3c763d; border-color: #d6e9c6;">
@@ -104,5 +104,19 @@
     <script src="${vendor}select2/select2.min.js"></script>
     <!-- Main JS-->
     <script src="${js}main.js"></script>
+    
+    <div class="modal fade" id="staticModal" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
+        data-backdrop="static">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">               
+                <div class="modal-body">
+                    <p>
+                        Enviando o email para o usuário, aguarde...
+                    </p>
+                </div>                
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>

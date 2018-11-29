@@ -134,7 +134,7 @@ public class UsuarioController {
 
 	@PostMapping(value = { "/app/adm/usuario/salvar" })
 	public String salvar(@Valid @ModelAttribute("usuario") Usuario usuario, BindingResult brUsuario,
-			@RequestParam(name = "tipoPermissao", required = false) String seraAdm) {
+			@RequestParam(name = "tipoPermissao", required = false) String seraAdm, Model model) {
 
 		if (usuarioDAO.buscarPorEmail(usuario.getEmail()) != null) {
 			brUsuario.addError(new FieldError("usuario", "email", "O e-mail ja existe"));
@@ -160,7 +160,7 @@ public class UsuarioController {
 			  
 			 usuario.hashearSenha();
 			 usuarioDAO.persistir(usuario);
-			 
+			 			 
 			 try { 
 				 EmailUtils.enviarEmail(titulo, corpo, usuario.getEmail()); }
 			 catch(MessagingException e){
@@ -175,6 +175,7 @@ public class UsuarioController {
 
 			usuarioDAO.alterar(usuarioBanco);
 		}
+		model.addAttribute("mensagem","sucessoUsr");
 		return "redirect:/app/tecnologia";
 	}
 

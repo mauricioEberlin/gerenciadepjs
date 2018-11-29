@@ -15,7 +15,9 @@
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
 
+	<!-- Ícone -->
 	<link rel="icon" href="${imgs}/favicon.png" type="image/png">
+	
 	<!-- Fontfaces CSS-->
     <link href="${css}/font-face.css" rel="stylesheet" media="all">
     <link href="${vendor}/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
@@ -41,7 +43,7 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     
     <!-- CSS -->
-    <link rel="stylesheet" href="${css}/style.css">
-    <link rel="stylesheet" href="${css}/bootstrap-select.css">
-    <link rel="stylesheet" href="${css}/bootstrap-select.css.map">
-    <link rel="stylesheet" href="${css}/bootstrap-select.min.css">
+    <link href="${css}/style.css" rel="stylesheet" >
+    <link href="${css}/bootstrap-select.css" rel="stylesheet">
+    <link href="${css}/bootstrap-select.css.map" rel="stylesheet" >
+    <link href="${css}/bootstrap-select.min.css" rel="stylesheet">
