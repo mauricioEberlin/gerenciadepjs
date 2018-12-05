@@ -152,7 +152,7 @@ public class UsuarioController {
 
 		if (usuario.getId() == null) {
 						
-			 String titulo = "Bem-Vindo ao gerenciamento de projetos BQR!"; 
+			 String titulo = "Bem-Vindo ao gerenciamento de projetos BRQ!"; 
 			 String corpo = "Olá, "
 			 + usuario.getNome() + " " + usuario.getSobrenome()
 			 + "! Seja bem-vindo a BRQ. "

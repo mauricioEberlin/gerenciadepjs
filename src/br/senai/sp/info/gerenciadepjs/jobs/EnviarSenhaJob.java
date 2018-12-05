@@ -32,7 +32,7 @@ public class EnviarSenhaJob {
 			usuarioBanco.hashearSenha();
 			usuarioDAO.alterar(usuarioBanco);
 
-			String titulo = "BQR - recuperação de senha";
+			String titulo = "BRQ - Recuperação de senha";
 			String corpo = "Olá, " + usuarioBanco.getNome() + " " + usuarioBanco.getSobrenome()
 					+ "! Recupere sua senha." + " A nova senha é: " + senhaNova;
 
