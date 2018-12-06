@@ -25,7 +25,7 @@
                 <div class="container-fluid">
                     <div class="header-mobile-inner">
                         <form class="form-headerr" action="${urlPesquisar}" method="GET">
-                            <input class="au-input au-input--xl" style="width:170px" type="text" name="pesquisa" id="filtro-nome
+                            <input class="au-input au-input--xl" style="width:170px" type="text" name="pesquisa"
                                 placeholder="Nome ${placeholder}" />
                             <button class="au-btn--submit" type="submit">
                                 <i class="zmdi zmdi-search"></i>

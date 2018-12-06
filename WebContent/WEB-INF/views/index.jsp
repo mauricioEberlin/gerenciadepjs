@@ -75,7 +75,7 @@
 								</c:set>
                                 
                                 <c:if test="${not empty emailOuSenhaTemErro}">
-                                	<div class="alert alert-danger" role="alert" style="font-size: 14px; text-align:center; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb">
+                                	<div id="a" class="alert alert-danger" role="alert" style="font-size: 14px; text-align:center; background-color: #f8d7da; color: #721c24; border-color: #f5c6cb">
                                    	 	<form:errors path="email"/>
                                		</div>
                                 </c:if>
@@ -107,6 +107,12 @@
     <script src="${vendor}select2/select2.min.js"></script>
     <!-- Main JS-->
     <script src="${js}main.js"></script>
+    
+    <script>// depois de um tempo (4 segundos), ele vai buscar o item pelo id, no caso 'a', que é da div, e irá 'esconder' - hide()
+    $(document).ready(function () {     
+    setTimeout(function () { $('#a').hide() }, 4000);
+                        });
+    </script>
     
 </body>
 </html>

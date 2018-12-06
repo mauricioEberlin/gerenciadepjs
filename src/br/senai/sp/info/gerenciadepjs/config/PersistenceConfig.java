@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 			dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 			                                             //Nome da database
 			dataSource.setUrl("jdbc:mysql://localhost:3306/gerenciadepjs_brq?serverTimezone=UTC");
+			//dataSource.setUrl("jdbc:mysql://172.16.10.17:3306/gerenciadepjs_brq?serverTimezone=UTC");
 			dataSource.setUsername("root");
 			dataSource.setPassword("Senai@132");
 			
