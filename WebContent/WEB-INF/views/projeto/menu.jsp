@@ -13,6 +13,8 @@
 <c:url value="/assets/vendor" var="vendor" />
 <c:url value="/assets/js" var="js" />
 
+<c:url var="urlPagina" value="?pagina="/>
+
 <!-- Coloque aqui o valor de quantos projetos devem ser mostrados por página -->
 <c:set var="pjsPPag" value="9" />
 
@@ -22,6 +24,23 @@
 
 <c:set var="priProjeto" value="${(pjsPPag*pagina)-pjsPPag}" />
 <c:set var="ultProjeto" value="${(pjsPPag*pagina)-1}" />
+
+<c:if test="${idStatus != null || idTecnologia != null || pesquisado != null}">
+	<c:set var="urlPagina" value="&pagina="/>
+</c:if>
+
+<c:if test="${idStatus != null}">
+	<c:set var="urlInicial" value="?idStatus=${idStatus}" />
+</c:if>
+<c:if test="${idTecnologia != null}">
+	<c:set var="urlInicial" value="?idTec=${idTecnologia}" />
+</c:if>
+<c:if test="${pesquisado != null}">
+	<c:set var="urlInicial" value="?pesquisa=${pesquisado}" />
+</c:if>
+<c:if test="${idStatus != null && idTecnologia != null}">
+	<c:set var="urlInicial" value="?idStatus=${idStatus}&idTec=${idTecnologia}"/>
+</c:if>
 
 <!DOCTYPE html>
 <html>
@@ -82,50 +101,50 @@
 								style="color: #005fa3;">
 								<c:if test="${pagina > 1}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina-1}" aria-label="Previous"> <span
+										href="${urlInicial}${urlPagina}${pagina-1}" aria-label="Previous"> <span
 											aria-hidden="true">&laquo;</span> <span class="sr-only">Previous</span>
 									</a></li>
 								</c:if>
 								<c:if test="${pagina-4 >= 1}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina-4}">${pagina-4}</a></li>
+										href="${urlInicial}${urlPagina}${pagina-4}">${pagina-4}</a></li>
 								</c:if>
 								<c:if test="${pagina-3 >= 1}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina-3}">${pagina-3}</a></li>
+										href="${urlInicial}${urlPagina}${pagina-3}">${pagina-3}</a></li>
 								</c:if>
 								<c:if test="${pagina-2 >= 1}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina-2}">${pagina-2}</a></li>
+										href="${urlInicial}${urlPagina}${pagina-2}">${pagina-2}</a></li>
 								</c:if>
 								<c:if test="${pagina-1 >= 1}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina-1}">${pagina-1}</a></li>
+										href="${urlInicial}${urlPagina}${pagina-1}">${pagina-1}</a></li>
 								</c:if>
 
 								<li class="page-item"><a class="page-link"
-									href="?&pagina=${pagina}">${pagina}</a></li>
+									href="${urlInicial}${urlPagina}${pagina}">${pagina}</a></li>
 
-								<c:if test="${pagina*9 < fn:length(projetos)}">
+								<c:if test="${pagina*pjsPPag < fn:length(projetos)}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina+1}">${pagina+1}</a></li>
+										href="${urlInicial}${urlPagina}${pagina+1}">${pagina+1}</a></li>
 								</c:if>
-								<c:if test="${(pagina+1)*9 < fn:length(projetos)}">
+								<c:if test="${(pagina+1)*pjsPPag < fn:length(projetos)}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina+2}">${pagina+2}</a></li>
+										href="${urlInicial}${urlPagina}${pagina+2}">${pagina+2}</a></li>
 								</c:if>
-								<c:if test="${(pagina+2)*9 < fn:length(projetos)}">
+								<c:if test="${(pagina+2)*pjsPPag < fn:length(projetos)}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina+3}">${pagina+3}</a></li>
+										href="${urlInicial}${urlPagina}${pagina+3}">${pagina+3}</a></li>
 								</c:if>
-								<c:if test="${(pagina+3)*9 < fn:length(projetos)}">
+								<c:if test="${(pagina+3)*pjsPPag < fn:length(projetos)}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina+4}">${pagina+4}</a></li>
+										href="${urlInicial}${urlPagina}${pagina+4}">${pagina+4}</a></li>
 								</c:if>
 
-								<c:if test="${pagina*9 < fn:length(projetos)}">
+								<c:if test="${pagina*pjsPPag < fn:length(projetos)}">
 									<li class="page-item"><a class="page-link"
-										href="?&pagina=${pagina+1}" aria-label="Next"> <span
+										href="${urlInicial}${urlPagina}${pagina+1}" aria-label="Next"> <span
 											aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span>
 									</a></li>
 								</c:if>

@@ -68,7 +68,7 @@
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label class=" form-control-label">Senha antiga<b class="obrigatorio">*</b></label>
+                                                    <label class=" form-control-label">Senha atual<b class="obrigatorio">*</b></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
                                                     <input type="password" id="password-input" name="senha"

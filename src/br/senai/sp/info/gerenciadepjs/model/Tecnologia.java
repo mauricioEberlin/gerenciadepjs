@@ -1,15 +1,11 @@
 package br.senai.sp.info.gerenciadepjs.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -22,13 +18,14 @@ public class Tecnologia {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(length = 26, nullable = false, unique = true)
+	@Column(length = 30, nullable = false, unique = true)
 	@NotEmpty(message = "Este campo é obrigatório!")
+	@Size(max = 30, message = "O campo não pode ultrapassar o limite de 30 caractéres.")
 	private String nome;
 
 	@Lob
 	@Column(nullable = true)
-	@Size(max = 500, message = "O campo não pode ultrapassar o limite de 500 caractéres.")
+	@Size(max = 400, message = "O campo não pode ultrapassar o limite de 400 caractéres.")
 	private String descricao;
 
 	// G&S

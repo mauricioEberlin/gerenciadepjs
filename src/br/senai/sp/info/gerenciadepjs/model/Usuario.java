@@ -29,24 +29,27 @@ public class Usuario implements Authentication{
 	@NotNull
 	private Permissao permissao = Permissao.COORDENADOR;
 	
-	@Column(length = 30, nullable = false)
+	@Column(length = 20, nullable = false)
 	@NotEmpty(message = "Este campo é obrigatório!")
 	private String nome;
 	
-	@Column(length = 50, nullable = false)
+	@Column(length = 30, nullable = false)	
 	@NotEmpty(message = "Este campo é obrigatório!")
+	@Size(max = 30, message = "O campo não pode ultrapassar o limite de 30 caractéres.")
 	private String sobrenome;
 		
-	@Column(length = 120, nullable = false, unique = true)
+	@Column(length = 50, nullable = false, unique = true)
 	@NotEmpty(message = "Este campo é obrigatório!")
 	@Email
+	@Size(max = 50, message = "O campo não pode ultrapassar o limite de 50 caractéres.")
 	private String email;
 	
 	@Column(length = 11, nullable = false)
 	@Size(min = 8, max = 11, message = "Telefone deve conter entre 8 a 11 caractéres.")
 	private String telefone;
 	
-	@Column(length = 64, nullable = false)
+	@Column(length = 100, nullable = false)
+	@Size(max = 100, message = "A senha ficou muito extensa. Diminua alguns caractéres.")
 	@NotEmpty(message = "Este campo é obrigatório!")
 	private String senha;
 	

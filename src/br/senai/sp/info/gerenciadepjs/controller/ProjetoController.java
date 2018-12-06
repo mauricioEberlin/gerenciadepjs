@@ -57,14 +57,17 @@ public class ProjetoController {
 		
 		if(nome != null) {
 			model.addAttribute("projetos", dao.pesquisarPorNome(nome));
+			model.addAttribute("pesquisado", nome);
 		}
 		
 		if(id != null) {
 			model.addAttribute("projetos", dao.buscarPorTecnologia(id));
+			model.addAttribute("idTecnologia", id);
 		}
 		
 		if(idStatus != null) {
 			model.addAttribute("projetos", dao.buscarPorStatus(idStatus));
+			model.addAttribute("idStatus", idStatus);
 		}
 				
 		return "projeto/menu";
@@ -98,7 +101,7 @@ public class ProjetoController {
 		if (projeto.getId() == null) {
 			brprojeto.addError(new FieldError("projeto", "id", "O ID do projeto é obrigatório!"));
 		}
-		
+				
 		if (dao.buscarPorNome(projeto.getNome()) != null && dao.buscar(projeto.getId()) == null) {
 			brprojeto.addError(new FieldError("projeto", "nome", "O nome já existe"));
 		}
@@ -126,6 +129,7 @@ public class ProjetoController {
 		}else {
 			Projeto projetoBanco = dao.buscar(projeto.getId());	
 			BeanUtils.copyProperties(projeto, projetoBanco, "id");
+			projetoBanco.setId(projeto.getId());
 			dao.alterar(projetoBanco);
 		}				
 		model.addAttribute("sucesso", "true");

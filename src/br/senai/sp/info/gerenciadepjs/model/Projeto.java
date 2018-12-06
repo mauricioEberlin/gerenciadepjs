@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 @Table
 public class Projeto {
@@ -33,30 +35,35 @@ public class Projeto {
 
 	@Column(length = 40, nullable = false, unique = false)
 	@NotEmpty(message = "Este campo é obrigatório!")
+	@Size(max = 30, message = "O campo não pode ultrapassar o limite de 40 caractéres.")
 	private String nome;
 
-	@Column(length = 64, nullable = false, unique = false)
+	@Column(length = 48, nullable = false, unique = false)
 	@NotEmpty(message = "Este campo é obrigatório!")
+	@Size(max = 48, message = "O campo não pode ultrapassar o limite de 48 caractéres.")
 	private String responsavelBRQ;
 
-	@Column(length = 64, nullable = false, unique = false)
+	@Column(length = 48, nullable = false, unique = false)
 	@NotEmpty(message = "Este campo é obrigatório!")
+	@Size(max = 48, message = "O campo não pode ultrapassar o limite de 48 caractéres.")
 	private String responsavelCliente;
 
 	@Column(nullable = true)
 	private Float horas;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Column(nullable = true)
 	private Date dataInicio;
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Column(nullable = true)
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    @Column(nullable = true)
 	private Date dataFim;
 
 	@Lob
 	@Column(nullable = true)
-	@Size(max = 500, message = "O campo não pode ultrapassar o limite de 500 caractéres.")
+	@Size(max = 400, message = "O campo não pode ultrapassar o limite de 400 caractéres.")
 	private String descricao;
 
 	// G&S
