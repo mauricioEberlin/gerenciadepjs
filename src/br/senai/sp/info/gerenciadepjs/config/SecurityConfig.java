@@ -23,6 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	        .antMatchers("/api/**").authenticated()
 	        .antMatchers(HttpMethod.GET,
 	                "/*.html",
+	                "/*.png",
+	                "/**/*.png",
 	                "/favicon.ico",
 	                "/**/*.html",
 	                "/**/*.css",
