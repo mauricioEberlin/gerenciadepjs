@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.util.DigestUtils;
 
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Usuario")

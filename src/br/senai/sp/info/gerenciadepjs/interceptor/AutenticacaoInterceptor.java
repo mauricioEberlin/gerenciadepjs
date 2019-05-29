@@ -25,12 +25,7 @@ public class AutenticacaoInterceptor extends HandlerInterceptorAdapter {
 		Usuario usuarioAutenticado = (Usuario) session.getAttribute("usuarioAutenticado");
 		boolean usuarioEstaAutenticado = usuarioAutenticado != null;
 		boolean necessitaSerAdministrador = request.getRequestURI().contains("/adm");
-		
-		//if(request.getParameter("pagina") != null) {
-		//	System.out.println(request.getRequestURI());
-		//}
-		
-		
+				
 		if(necessitaAutenticacao) {
 			if(usuarioEstaAutenticado) {
 				if(necessitaSerAdministrador && usuarioAutenticado.getPermissao() != Permissao.ADMINISTRADOR) {

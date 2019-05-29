@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.senai.sp.info.gerenciadepjs.dao.TecnologiaDAO;
 import br.senai.sp.info.gerenciadepjs.model.Tecnologia;
-import br.senai.sp.info.gerenciadepjs.model.Usuario;
 
 @Repository
 @Transactional
